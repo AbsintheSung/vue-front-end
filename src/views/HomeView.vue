@@ -13,22 +13,28 @@ const svgData = ref([
 <template>
   <HeaderView />
   <main>
-    <section class="container py-6">
+    <section class="container py-6 font-noto">
       <div
         class="grid grid-flow-dense grid-cols-3 grid-rows-2 gap-2 md:grid-cols-6 md:grid-rows-1 md:gap-6"
       >
-        <div v-for="svgItem in svgData" :key="svgItem.name">
-          <router-link class="w-full flex-col items-center justify-center">
+        <router-link
+          to="/"
+          v-for="svgItem in svgData"
+          :key="svgItem.name"
+          class="border-2 border-black py-9 hover:text-yellow-400"
+        >
+          <div class="flex-col items-center justify-center">
             <TheSvg :svgIcon="svgItem.name" />
-            <h3 class="text-center">{{ svgItem.title }}</h3>
-          </router-link>
-        </div>
-        <div class="h-full">
-          <router-link
-            class="flex h-full w-full items-center justify-center bg-black text-5xl font-black text-yellow-400"
-            >探索<br />更多</router-link
+            <h3 class="mt-3 text-center font-bold">{{ svgItem.title }}</h3>
+          </div>
+        </router-link>
+        <router-link to="/" class="h-full">
+          <div
+            class="flex h-full w-full items-center justify-center bg-black text-2xl font-black text-yellow-400 hover:text-yellow-200 md:text-4xl"
           >
-        </div>
+            探索<br />更多
+          </div>
+        </router-link>
       </div>
     </section>
   </main>
