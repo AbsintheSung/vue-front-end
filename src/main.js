@@ -3,9 +3,10 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import './assets/tailwind.css'
+import { FontAwesomeIcon } from '@/plugins/fontawsome.config'
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
-
+app.component('FontAwesomeIcon', FontAwesomeIcon)
 app.mount('#app')
