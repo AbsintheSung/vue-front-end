@@ -32,7 +32,9 @@ import ActiveTitle from '@/components/ActiveTitle.vue'
               ><img src="../assets/images/sparkler.png" class="me-2 w-6" />社群活動</router-link
             >
 
-            <router-link to="/" class="card-hover-pseudo block">開賣中</router-link>
+            <router-link to="/" class="card-hover-pseudo block"
+              >開賣中<FontAwesomeIcon :icon="['fas', 'angles-right']"
+            /></router-link>
           </div>
         </div>
       </li>
