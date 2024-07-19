@@ -8,10 +8,29 @@ export default {
       sm: '576px',
       md: '768px',
       lg: '992px',
-      xl: '1200px',
-      xxl: '1400px'
+      xl: '1320px'
     },
-    extend: {}
+    container: {
+      center: true,
+      padding: '1.5rem',
+      screens: {
+        ssm: '100%',
+        sm: '100%',
+        md: '100%',
+        lg: '100%',
+        xl: '1320px'
+      }
+    },
+    extend: {
+      fontFamily: {
+        yeseva: ['"Yeseva One"', 'sans-serif'],
+        noto: ['"Noto Serif TC"', 'serif']
+      },
+      backgroundColor: {
+        'custom-bg-1': '#F3F1E5'
+      },
+      color: {}
+    }
   },
   plugins: []
 }
