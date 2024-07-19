@@ -10,7 +10,7 @@ const props = defineProps({
 const svgStyle = props.svgIcon
 </script>
 <template>
-  <svg class="h-full w-full">
+  <svg class="mx-auto w-[40px] md:w-[80px]">
     <use :href="`${sprite}#${svgStyle}`"></use>
   </svg>
 </template>
