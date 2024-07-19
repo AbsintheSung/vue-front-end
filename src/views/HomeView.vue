@@ -1,6 +1,7 @@
 <script setup>
 import HeaderView from '@/layouts/HeaderView.vue'
-import sprite from '@/assets/svg/icon.svg'
+import TheSvg from '@/components/TheSvg.vue'
+const svgData = ['Capa_1', 'Layer_1', 'Capa_2', 'Icon', 'Capa_3']
 </script>
 <template>
   <HeaderView />
@@ -9,32 +10,10 @@ import sprite from '@/assets/svg/icon.svg'
       <div
         class="grid grid-flow-dense grid-cols-3 grid-rows-2 md:grid-cols-6 md:grid-rows-1 md:gap-6"
       >
-        <div>
-          <svg class="h-full w-full">
-            <use :href="`${sprite}#Capa_1`"></use>
-          </svg>
+        <div v-for="svgItem in svgData" :key="svgItem">
+          <TheSvg :svgIcon="svgItem" />
         </div>
-        <div>
-          <svg class="h-full w-full">
-            <use :href="`${sprite}#Layer_1`"></use>
-          </svg>
-        </div>
-        <div>
-          <svg class="h-full w-full">
-            <use :href="`${sprite}#Capa_2`"></use>
-          </svg>
-        </div>
-        <div>
-          <svg class="h-full w-full">
-            <use :href="`${sprite}#Icon`"></use>
-          </svg>
-        </div>
-        <div>
-          <svg class="h-full w-full">
-            <use :href="`${sprite}#Capa_3`"></use>
-          </svg>
-        </div>
-        <div>6</div>
+        <div></div>
       </div>
     </section>
   </main>
