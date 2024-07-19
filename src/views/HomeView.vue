@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import HeaderView from '@/layouts/HeaderView.vue'
+</script>
 <template>
-  <main></main>
+  <HeaderView />
 </template>
