@@ -29,7 +29,7 @@ import ActiveTitle from '@/components/ActiveTitle.vue'
             class="mt-auto flex items-center justify-between border-y-2 border-black py-2 font-bold md:py-3"
           >
             <span>社群活動</span>
-            <router-link to="/" class="hover:underline">開賣中</router-link>
+            <router-link to="/" class="card-hover-pseudo block">開賣中</router-link>
           </div>
         </div>
       </li>

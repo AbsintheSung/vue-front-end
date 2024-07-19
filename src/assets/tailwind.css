@@ -3,3 +3,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .card-hover-pseudo {
+        @apply relative;
+    }
+    .card-hover-pseudo::before {
+        content: '';
+        @apply absolute top-0 -left-[10px] w-[25px] h-[25px] bg-[#FBFF22] rounded-full opacity-0 transition-opacity duration-300 -z-10;
+      }
+      .card-hover-pseudo:hover::before {
+        @apply opacity-100;
+      }
+  }
