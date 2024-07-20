@@ -18,6 +18,22 @@ const router = createRouter({
       name: 'Active',
       component: () => import('@/views/ActivePgae.vue'),
     },
+    {
+      path: '/type-active/:type',
+      name: 'TypeAction',
+      component: () => import('@/views/TypeActivePage.vue'),
+      children: [
+        {
+          path: ':page',
+          name: 'FilterTick',
+          component: () => import('@/components/FilterTick.vue'),
+        }
+      ],
+      redirect: to => {
+        // 當只有類型時，重定向到第一頁
+        return { name: 'FilterTick', params: { ...to.params, page: '1' } }
+      }
+    }
 
   ]
 })

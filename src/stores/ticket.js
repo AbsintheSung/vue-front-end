@@ -37,6 +37,7 @@ export const useTicketStore = defineStore('tickets', () => {
       const response = await axios(`${baseURL}/v2/api/${apiName}/products`, {
         params: { page: page.toString(), category: category }
       });
+      console.log(response)
       if (response.status === 200) {
         ticketData.value = response.data;
       }

@@ -6,7 +6,7 @@
     max-pages-shown : 一次總共要顯示幾個
     v-model 綁定目前 在哪一頁
 */
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 const props = defineProps({
   pageInfo: {
     type: Object,
@@ -29,6 +29,7 @@ const pages = computed(() => {
     totalPages: total_pages
   }
 })
+const currentPage = ref(pages.value.currentPage || 1)
 const emits = defineEmits({
   sendPageNum: (num) => {
     if (typeof num === 'number') {
@@ -47,7 +48,7 @@ const onClickHandler = (page) => {
     :total-items="pages.totalPages"
     :items-per-page="1"
     :max-pages-shown="4"
-    v-model="pages.currentPage"
+    v-model="currentPage"
     @click="onClickHandler"
   />
 </template>
