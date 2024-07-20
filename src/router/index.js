@@ -9,14 +9,26 @@ const router = createRouter({
       name: 'home',
       component: HomeView
     },
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import('../views/AboutView.vue')
-    // }
+    {
+      path: '/active',
+      name: 'Active',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('@/views/ActivePgae.vue'),
+      children: [
+        {
+          path: '',
+          name: 'AllProducts',
+          component: () => import('@/views/filterTickPage.vue')
+        },
+        {
+          path: ':type',
+          name: 'FilteredProducts',
+          component: () => import('@/views/filterTickPage.vue')
+        },
+      ],
+    }
   ]
 })
 
