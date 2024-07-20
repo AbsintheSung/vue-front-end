@@ -22,6 +22,19 @@ export const useTicketStore = defineStore('tickets', () => {
       console.log(error)
     }
   }
+  const fetchPageInfo = async (page = '', category = '') => {
+    try {
+      const response = await axios(`${baseURL}/v2/api/${apiName}/products`, {
+        params: { page: page.toString(), category: category }
+      });
+      if (response.status === 200) {
+        ticketData.value = response.data;
+      }
+      // console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-  return { ticketData, getTicketData, fetchAllTicketData, getTicketPage }
+  return { ticketData, getTicketData, fetchAllTicketData, getTicketPage, fetchPageInfo }
 })
