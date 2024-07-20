@@ -24,12 +24,14 @@ onMounted(async () => {
 })
 </script>
 <template>
-  <ActiveTitle />
-  <ul class="container grid grid-cols-1 gap-6 py-2 font-noto sm:grid-cols-2 md:grid-cols-3">
-    <TickCard v-for="item in tickStore.getTicketData" :key="item.id" :cardItem="item" />
-  </ul>
-  <div class="container flex">
-    <PaginatePage :pageInfo="tickStore.getTicketPage" @sendPageNum="handlePages"></PaginatePage>
+  <div class="flex h-full flex-col">
+    <ActiveTitle />
+    <ul class="container grid grid-cols-1 gap-6 py-2 font-noto sm:grid-cols-2 md:grid-cols-3">
+      <TickCard v-for="item in tickStore.getTicketData" :key="item.id" :cardItem="item" />
+    </ul>
+    <div class="container mt-auto flex">
+      <PaginatePage :pageInfo="tickStore.getTicketPage" @sendPageNum="handlePages"></PaginatePage>
+    </div>
   </div>
 </template>
 <style scoped></style>
