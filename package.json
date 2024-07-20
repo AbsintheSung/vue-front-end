@@ -21,6 +21,7 @@
     "axios": "^1.7.2",
     "pinia": "^2.1.7",
     "vue": "^3.4.29",
+    "vue-awesome-paginate": "^1.2.0",
     "vue-router": "^4.3.3"
   },
   "devDependencies": {
