@@ -18,8 +18,10 @@
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@headlessui/vue": "^1.7.22",
+    "axios": "^1.7.2",
     "pinia": "^2.1.7",
     "vue": "^3.4.29",
+    "vue-awesome-paginate": "^1.2.0",
     "vue-router": "^4.3.3"
   },
   "devDependencies": {
