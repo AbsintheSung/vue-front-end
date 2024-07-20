@@ -17,6 +17,7 @@ export const useTicketStore = defineStore('tickets', () => {
     try {
       const response = await axios(`${baseURL}/v2/api/${apiName}/products`);
       ticketData.value = response.data;
+      console.log(response)
     } catch (error) {
       console.log(error)
     }
