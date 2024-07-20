@@ -12,7 +12,7 @@ const props = defineProps({
     type: Object,
     default: () => {
       return {
-        current_page: 1,
+        current_page: '',
         has_next: true,
         has_pre: false,
         total_pages: 2

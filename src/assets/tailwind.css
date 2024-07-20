@@ -5,7 +5,11 @@
 @tailwind utilities;
 
 body {
-  @apply bg-custom-bg-1 min-h-screen;
+  @apply bg-custom-bg-1;
+  height: 100vh;
+}
+#app{
+  height: 100%;
 }
 @layer components {
     .card-hover-pseudo {
