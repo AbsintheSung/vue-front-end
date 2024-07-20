@@ -3,6 +3,8 @@ import HeaderView from '@/layouts/HeaderView.vue'
 import LinkCard from '@/components/LinkCard.vue'
 import ActiveTitle from '@/components/ActiveTitle.vue'
 import TickCard from '@/components/TickCard.vue'
+import { useTicketStore } from '@/stores/ticket'
+const tickStore = useTicketStore()
 </script>
 <template>
   <HeaderView />
@@ -13,7 +15,7 @@ import TickCard from '@/components/TickCard.vue'
     <ActiveTitle :leftTitle="'RECENT'" :rightTitle="'近期活動'" />
     <ActiveTitle :leftTitle="'ONLINE'" :rightTitle="'線上活動'" />
     <ul class="container grid grid-cols-1 gap-6 py-2 font-noto sm:grid-cols-2 md:grid-cols-3">
-      <TickCard v-for="item in 6" :key="item" />
+      <TickCard v-for="item in tickStore.getTicketData" :key="item.id" :cardItem="item" />
     </ul>
   </main>
 </template>
