@@ -15,7 +15,19 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('@/views/ActivePgae.vue')
+      component: () => import('@/views/ActivePgae.vue'),
+      children: [
+        {
+          path: '',
+          name: 'AllProducts',
+          component: () => import('@/views/filterTickPage.vue')
+        },
+        {
+          path: ':type',
+          name: 'FilteredProducts',
+          component: () => import('@/views/filterTickPage.vue')
+        },
+      ],
     }
   ]
 })
