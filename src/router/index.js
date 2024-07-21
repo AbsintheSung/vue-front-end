@@ -35,7 +35,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/ticket-detail',
+      path: '/ticket-detail/:ticketId',
       name: "TicketDetail",
       component: () => import('@/views/TicketDetail.vue'),
     }
