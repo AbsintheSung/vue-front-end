@@ -4,11 +4,11 @@ import LinkCard from '@/components/LinkCard.vue'
 import ActiveTitle from '@/components/ActiveTitle.vue'
 import TickCard from '@/components/TickCard.vue'
 import { useTicketStore } from '@/stores/ticket'
-import { onMounted } from 'vue'
+// import { onMounted } from 'vue'
 const tickStore = useTicketStore()
-onMounted(() => {
-  tickStore.fetchAllTicketData()
-})
+// onMounted(() => {
+//   tickStore.fetchAllTicketData()
+// })
 </script>
 <template>
   <HeaderView />
