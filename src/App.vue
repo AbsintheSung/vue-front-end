@@ -31,7 +31,7 @@ onMounted(() => {
   </main> -->
   <div class="flex min-h-screen flex-col">
     <HeaderView />
-    <main class="container flex flex-grow flex-col">
+    <main class="container flex flex-grow flex-col py-6">
       <RouterView />
     </main>
     <FooterView />
