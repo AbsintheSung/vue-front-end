@@ -1,14 +1,74 @@
 <script setup>
-// import ActiveTitle from '@/components/ActiveTitle.vue'
+import axios from 'axios'
+import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+const route = useRoute()
+const tichetId = route.params.ticketId // 獲取路由的id ( 發送獲取資料api需要此id資訊 )
+const baseURL = import.meta.env.VITE_APP_API_URL
+const apiName = import.meta.env.VITE_APP_API_NAME
+const ticketData = ref({}) // 門票資料，一開始為空，從遠端獲取資料後會存到此處
+const quenity = ref(1) // 數量資料
+
+//遠端獲取單一門票資料
+const getTicketInfo = async (tichetId) => {
+  try {
+    const response = await axios(`${baseURL}/v2/api/${apiName}/product/${tichetId}`)
+    if (response.status === 200) {
+      ticketData.value = response.data.product
+      console.log(ticketData.value)
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+//增加單一數量
+const addQuantity = () => {
+  quenity.value++
+}
+
+//減少單一數量
+const reduceQuantity = () => {
+  quenity.value === 1 ? (quenity.value = 1) : quenity.value--
+}
+
+// 使用 @blur 失去焦點才執行 ( 防止使用者亂輸入 )
+// 空格 0 或 - 開頭，非數字 都會強制轉成1
+const userInput = (event) => {
+  const inputValue = event.target.value
+  quenity.value = inputValue.replace(/\D/g, '')
+  if (quenity.value === '' || /^0+\d*$/.test(quenity.value) || /^-/.test(inputValue)) {
+    quenity.value = 1
+  }
+}
+//點擊購買發送 購買api資訊
+const handleTickInfo = async () => {
+  const dataInfo = {
+    data: {
+      product_id: tichetId,
+      qty: quenity.value
+    }
+  }
+  try {
+    const response = await axios.post(`${baseURL}/v2/api/${apiName}/cart`, dataInfo)
+    // console.log(response.status, response.data);
+    if (response.status === 200) {
+      quenity.value = 1
+      console.log(response, '顯示彈窗，確認是否繼續購物跳轉product頁面或是購物車明細頁面')
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+onMounted(async () => {
+  await getTicketInfo(tichetId)
+})
 </script>
 <template>
   <main class="container">
     <section class="grid grid-cols-1 gap-2 md:grid-cols-6 md:gap-6">
       <div class="col-span-1 border-2 border-black p-3 md:col-span-5 md:p-6">
-        <img
-          class="h-full w-full object-cover"
-          src="https://github.com/AbsintheSung/7TAO_webpage/blob/main/assets/images/event/10.jpg?raw=true"
-        />
+        <img class="h-full w-full object-cover" :src="ticketData.imageUrl" />
       </div>
       <div class="flex gap-2 font-yeseva md:flex-col md:gap-6">
         <div class="border-2 border-black px-4 py-6 text-2xl md:px-0 md:py-8">
@@ -34,21 +94,30 @@
         </div>
         <div class="w-full md:w-1/2">
           <h2 class="text-2xl font-bold md:text-4xl">返老還童-制服聯誼</h2>
-          <p class="my-2 font-bold">穿上制服，無年齡限制，一起走上街頭、尋找青春才有的純愛心動！</p>
-          <p class="text-end"><del>NT$2000</del></p>
-          <p class="text-end text-2xl">NT$3500</p>
+          <p class="my-2 font-bold">{{ ticketData.description }}</p>
+          <p class="text-end">
+            <del>NT$ {{ ticketData.origin_price }}</del>
+          </p>
+          <p class="text-end text-2xl">NT$ {{ ticketData.price }}</p>
           <div class="my-2 flex items-center gap-2">
             <div class="flex flex-1 items-center">
-              <button class="p-2">
+              <button class="p-2" @click="reduceQuantity">
                 <FontAwesomeIcon :icon="['fas', 'minus']" />
               </button>
-              <input type="text" class="w-full bg-custom-bg-1 py-2 text-center" value="1" />
-              <button class="p-2">
+              <input
+                type="text"
+                class="w-full bg-custom-bg-1 py-2 text-center"
+                v-model="quenity"
+                @blur="userInput"
+              />
+              <button class="p-2" @click="addQuantity">
                 <FontAwesomeIcon :icon="['fas', 'plus']" />
               </button>
             </div>
             <div class="flex-1 flex-grow">
-              <button class="w-full bg-black py-2 text-[#FBFF22]">購買</button>
+              <button class="w-full bg-black py-2 text-[#FBFF22]" @click="handleTickInfo">
+                購買
+              </button>
             </div>
           </div>
         </div>
@@ -56,7 +125,7 @@
     </section>
     <section class="font-noto">
       <p class="border-2 border-black p-4 leading-8 md:p-8">
-        想回到過去？試著讓故事繼續？由戀愛家教「艾德溫」主辦策劃，讓各位在安排好的青春行程中擁有自然的純愛互動體驗，互相餵食餅乾、觀察對方手相，有趣的互動環節讓你/妳怦然心動！制服由主辦方提供，妝髮造型可額外加價購！活動中全程會有隨行攝影師，捕捉你們的純愛互動，拍攝成實境電視劇，讓你們能留下永恆的美好回憶&lt;3
+        {{ ticketData.content }}
       </p>
     </section>
     <!-- <ActiveTitle :leftTitle="'TICKET'" :rightTitle="'購票資訊'" /> -->

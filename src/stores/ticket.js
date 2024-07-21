@@ -47,5 +47,6 @@ export const useTicketStore = defineStore('tickets', () => {
     }
   }
 
+
   return { ticketData, getTicketData, getTicketPage, getTicketAllData, fetchPageInfo, fetchAllTicketData }
 })
