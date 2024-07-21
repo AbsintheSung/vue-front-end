@@ -17,7 +17,7 @@ const handleAllActive = () => {
 }
 </script>
 <template>
-  <div class="flex flex-wrap gap-2">
+  <div class="flex flex-wrap gap-2 pb-6 pt-2">
     <button
       class="border-2 border-s-4 border-black px-3 py-1 hover:border-s-[#FBFF22]"
       @click="handleAllActive"
