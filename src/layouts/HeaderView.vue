@@ -5,9 +5,11 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 <template>
   <Disclosure as="header" class="relative">
     <nav class="container mx-auto flex items-center py-[24px]">
-      <h1><img class="w-[53px]" :src="logoImage" alt="官網logo" /></h1>
-      <h2 class="font-yeseva ms-4 hidden items-center text-4xl font-black md:flex">
-        7TAO<span class="font-noto ms-1 text-base font-bold">活動訂票網</span>
+      <h1>
+        <router-link to="/"><img class="w-[53px]" :src="logoImage" alt="官網logo" /></router-link>
+      </h1>
+      <h2 class="ms-4 hidden items-center font-yeseva text-4xl font-black md:flex">
+        7TAO<span class="ms-1 font-noto text-base font-bold">活動訂票網</span>
       </h2>
 
       <input
