@@ -40,7 +40,7 @@ unit: "張"
       <div
         class="mt-auto flex items-center justify-between border-y-2 border-black py-2 font-bold md:py-3"
       >
-        <router-link :to="`/active/${cardItem.category}`" class="flex hover:underline"
+        <router-link :to="`/type-active/${cardItem.category}`" class="flex hover:underline"
           ><img src="../assets/images/sparkler.png" class="me-2 w-6" />{{
             cardItem.category
           }}</router-link
