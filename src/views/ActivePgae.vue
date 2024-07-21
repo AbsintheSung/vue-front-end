@@ -3,13 +3,16 @@ import ActiveTitle from '@/components/ActiveTitle.vue'
 import TickCard from '@/components/TickCard.vue'
 import PaginatePage from '@/components/PaginatePage.vue'
 import FilterButtin from '@/components/FilterButton.vue'
-import { watch, onMounted } from 'vue'
+import { watch, onMounted, ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useTicketStore } from '@/stores/ticket'
 const router = useRouter()
 const route = useRoute()
 const tickStore = useTicketStore()
-
+const filterBtnData = ref([])
+const getFilterBtnData = computed(() => [
+  ...new Set(tickStore.getTicketAllData.map((item) => item.category))
+])
 const handlePages = async (pageNum) => {
   await tickStore.fetchPageInfo(pageNum)
   router.push({ name: 'Active', params: { pagenum: pageNum } })
