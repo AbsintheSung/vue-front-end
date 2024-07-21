@@ -26,7 +26,7 @@ const router = createRouter({
         {
           path: ':page',
           name: 'FilterTick',
-          component: () => import('@/components/FilterTick.vue'),
+          component: () => import('@/views/TypeActiveContent.vue'),
         }
       ],
       redirect: to => {
