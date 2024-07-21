@@ -1,5 +1,6 @@
 <script setup>
 import axios from 'axios'
+import ActiveTitle from '@/components/ActiveTitle.vue'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
@@ -87,6 +88,7 @@ onMounted(async () => {
       </div>
     </div>
   </section>
+  <ActiveTitle :leftTitle="'TICKET'" :rightTitle="'購票資訊'" />
   <section class="my-6 font-noto">
     <div class="flex flex-wrap gap-6 md:flex-nowrap">
       <div class="w-full md:w-1/2">
@@ -128,8 +130,7 @@ onMounted(async () => {
       {{ ticketData.content }}
     </p>
   </section>
-  <!-- <ActiveTitle :leftTitle="'TICKET'" :rightTitle="'購票資訊'" /> -->
-  <section></section>
+
   <!-- </main> -->
 </template>
 <style scoped></style>
