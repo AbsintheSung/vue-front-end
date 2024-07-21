@@ -95,7 +95,7 @@ onMounted(async () => {
         <p>我是輪播圖片</p>
       </div>
       <div class="w-full md:w-1/2">
-        <h2 class="text-2xl font-bold md:text-4xl">返老還童-制服聯誼</h2>
+        <h2 class="text-2xl font-bold md:text-4xl">{{ ticketData.title }}</h2>
         <p class="my-2 font-bold">{{ ticketData.description }}</p>
         <p class="text-end">
           <del>NT$ {{ ticketData.origin_price }}</del>
