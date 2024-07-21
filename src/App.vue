@@ -1,6 +1,7 @@
 <script setup>
 // import { watch, onMounted } from 'vue'
 import HeaderView from '@/layouts/HeaderView.vue'
+import FooterView from '@/layouts/FooterView.vue'
 import { RouterView } from 'vue-router'
 // import { useTicketStore } from '@/stores/ticket'
 // const tickStore = useTicketStore()
@@ -30,12 +31,10 @@ onMounted(() => {
   </main> -->
   <div class="flex min-h-screen flex-col">
     <HeaderView />
-    <main class="container flex flex-grow flex-col">
+    <main class="container flex flex-grow flex-col py-6">
       <RouterView />
     </main>
-    <footer>
-      <div>我是頁尾</div>
-    </footer>
+    <FooterView />
   </div>
 </template>
 
