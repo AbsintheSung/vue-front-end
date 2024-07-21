@@ -33,6 +33,11 @@ const router = createRouter({
         // 當只有類型時，重定向到第一頁
         return { name: 'FilterTick', params: { ...to.params, page: '1' } }
       }
+    },
+    {
+      path: '/ticket-detail',
+      name: "TicketDetail",
+      component: () => import('@/views/TicketDetail.vue'),
     }
 
   ]
