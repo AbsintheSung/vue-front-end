@@ -1,5 +1,6 @@
 <script setup>
 // import { watch, onMounted } from 'vue'
+import HeaderView from '@/layouts/HeaderView.vue'
 import { RouterView } from 'vue-router'
 // import { useTicketStore } from '@/stores/ticket'
 // const tickStore = useTicketStore()
@@ -23,6 +24,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <HeaderView />
   <RouterView />
 </template>
 

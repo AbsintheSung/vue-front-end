@@ -1,5 +1,4 @@
 <script setup>
-import HeaderView from '@/layouts/HeaderView.vue'
 import LinkCard from '@/components/LinkCard.vue'
 import ActiveTitle from '@/components/ActiveTitle.vue'
 import TickCard from '@/components/TickCard.vue'
@@ -11,7 +10,6 @@ const tickStore = useTicketStore()
 // })
 </script>
 <template>
-  <HeaderView />
   <main class="container">
     <section class="py-6 font-noto">
       <LinkCard />
