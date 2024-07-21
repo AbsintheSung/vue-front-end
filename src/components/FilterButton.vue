@@ -14,7 +14,7 @@ const handleFilter = (filterData) => {
 }
 </script>
 <template>
-  <div class="container flex flex-wrap gap-2">
+  <div class="flex flex-wrap gap-2">
     <button
       v-for="filterItem in getFilterData"
       :key="filterItem"
