@@ -31,13 +31,13 @@ const handlePages = async (pageNum) => {
 }
 </script>
 <template>
-  <div class="flex h-full flex-col">
-    <ul class="container grid grid-cols-1 gap-6 py-2 font-noto sm:grid-cols-2 md:grid-cols-3">
-      <TickCard v-for="item in tickStore.getTicketData" :key="item.id" :cardItem="item" />
-    </ul>
-    <div class="container mt-auto flex">
-      <PaginatePage :pageInfo="tickStore.getTicketPage" @sendPageNum="handlePages"></PaginatePage>
-    </div>
+  <!-- <main class="container flex h-full flex-col"> -->
+  <ul class="grid grid-cols-1 gap-6 py-2 font-noto sm:grid-cols-2 md:grid-cols-3">
+    <TickCard v-for="item in tickStore.getTicketData" :key="item.id" :cardItem="item" />
+  </ul>
+  <div class="mt-auto flex py-6">
+    <PaginatePage :pageInfo="tickStore.getTicketPage" @sendPageNum="handlePages"></PaginatePage>
   </div>
+  <!-- </main> -->
 </template>
 <style scoped></style>
