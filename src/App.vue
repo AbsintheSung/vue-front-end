@@ -24,8 +24,19 @@ onMounted(() => {
 </script>
 
 <template>
-  <HeaderView />
-  <RouterView />
+  <!-- <HeaderView />
+  <main class="container">
+    <RouterView />
+  </main> -->
+  <div class="flex min-h-screen flex-col">
+    <HeaderView />
+    <main class="container flex flex-grow flex-col">
+      <RouterView />
+    </main>
+    <footer>
+      <div>我是頁尾</div>
+    </footer>
+  </div>
 </template>
 
 <style scoped></style>

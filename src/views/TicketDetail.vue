@@ -65,71 +65,71 @@ onMounted(async () => {
 })
 </script>
 <template>
-  <main class="container">
-    <section class="grid grid-cols-1 gap-2 md:grid-cols-6 md:gap-6">
-      <div class="col-span-1 border-2 border-black p-3 md:col-span-5 md:p-6">
-        <img class="h-full w-full object-cover" :src="ticketData.imageUrl" />
+  <!-- <main class="container"> -->
+  <section class="grid grid-cols-1 gap-2 md:grid-cols-6 md:gap-6">
+    <div class="col-span-1 border-2 border-black p-3 md:col-span-5 md:p-6">
+      <img class="h-full w-full object-cover" :src="ticketData.imageUrl" />
+    </div>
+    <div class="flex gap-2 font-yeseva md:flex-col md:gap-6">
+      <div class="border-2 border-black px-4 py-6 text-2xl md:px-0 md:py-8">
+        <p class="text-center">2023</p>
       </div>
-      <div class="flex gap-2 font-yeseva md:flex-col md:gap-6">
-        <div class="border-2 border-black px-4 py-6 text-2xl md:px-0 md:py-8">
-          <p class="text-center">2023</p>
+      <div class="flex flex-grow border-2 border-black md:flex-col">
+        <div class="flex flex-grow flex-col justify-center text-center text-2xl md:text-4xl">
+          <p>MAY</p>
+          <p>19</p>
         </div>
-        <div class="flex flex-grow border-2 border-black md:flex-col">
-          <div class="flex flex-grow flex-col justify-center text-center text-2xl md:text-4xl">
-            <p>MAY</p>
-            <p>19</p>
-          </div>
-          <div class="flex flex-grow flex-col justify-center text-center text-base md:text-2xl">
-            <p>12:00</p>
-            <p>|</p>
-            <p>21:00</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="my-6 font-noto">
-      <div class="flex flex-wrap gap-6 md:flex-nowrap">
-        <div class="w-full md:w-1/2">
-          <p>我是輪播圖片</p>
-        </div>
-        <div class="w-full md:w-1/2">
-          <h2 class="text-2xl font-bold md:text-4xl">返老還童-制服聯誼</h2>
-          <p class="my-2 font-bold">{{ ticketData.description }}</p>
-          <p class="text-end">
-            <del>NT$ {{ ticketData.origin_price }}</del>
-          </p>
-          <p class="text-end text-2xl">NT$ {{ ticketData.price }}</p>
-          <div class="my-2 flex items-center gap-2">
-            <div class="flex flex-1 items-center">
-              <button class="p-2" @click="reduceQuantity">
-                <FontAwesomeIcon :icon="['fas', 'minus']" />
-              </button>
-              <input
-                type="text"
-                class="w-full bg-custom-bg-1 py-2 text-center"
-                v-model="quenity"
-                @blur="userInput"
-              />
-              <button class="p-2" @click="addQuantity">
-                <FontAwesomeIcon :icon="['fas', 'plus']" />
-              </button>
-            </div>
-            <div class="flex-1 flex-grow">
-              <button class="w-full bg-black py-2 text-[#FBFF22]" @click="handleTickInfo">
-                購買
-              </button>
-            </div>
-          </div>
+        <div class="flex flex-grow flex-col justify-center text-center text-base md:text-2xl">
+          <p>12:00</p>
+          <p>|</p>
+          <p>21:00</p>
         </div>
       </div>
-    </section>
-    <section class="font-noto">
-      <p class="border-2 border-black p-4 leading-8 md:p-8">
-        {{ ticketData.content }}
-      </p>
-    </section>
-    <!-- <ActiveTitle :leftTitle="'TICKET'" :rightTitle="'購票資訊'" /> -->
-    <section></section>
-  </main>
+    </div>
+  </section>
+  <section class="my-6 font-noto">
+    <div class="flex flex-wrap gap-6 md:flex-nowrap">
+      <div class="w-full md:w-1/2">
+        <p>我是輪播圖片</p>
+      </div>
+      <div class="w-full md:w-1/2">
+        <h2 class="text-2xl font-bold md:text-4xl">返老還童-制服聯誼</h2>
+        <p class="my-2 font-bold">{{ ticketData.description }}</p>
+        <p class="text-end">
+          <del>NT$ {{ ticketData.origin_price }}</del>
+        </p>
+        <p class="text-end text-2xl">NT$ {{ ticketData.price }}</p>
+        <div class="my-2 flex items-center gap-2">
+          <div class="flex flex-1 items-center">
+            <button class="p-2" @click="reduceQuantity">
+              <FontAwesomeIcon :icon="['fas', 'minus']" />
+            </button>
+            <input
+              type="text"
+              class="w-full bg-custom-bg-1 py-2 text-center"
+              v-model="quenity"
+              @blur="userInput"
+            />
+            <button class="p-2" @click="addQuantity">
+              <FontAwesomeIcon :icon="['fas', 'plus']" />
+            </button>
+          </div>
+          <div class="flex-1 flex-grow">
+            <button class="w-full bg-black py-2 text-[#FBFF22]" @click="handleTickInfo">
+              購買
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="font-noto">
+    <p class="border-2 border-black p-4 leading-8 md:p-8">
+      {{ ticketData.content }}
+    </p>
+  </section>
+  <!-- <ActiveTitle :leftTitle="'TICKET'" :rightTitle="'購票資訊'" /> -->
+  <section></section>
+  <!-- </main> -->
 </template>
 <style scoped></style>
