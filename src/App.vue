@@ -14,6 +14,12 @@ import { RouterView } from 'vue-router'
 // onMounted(async () => {
 //   await tickStore.fetchAllTicketData()
 // })
+import { useTicketStore } from '@/stores/ticket'
+import { onMounted } from 'vue'
+const tickStore = useTicketStore()
+onMounted(() => {
+  tickStore.fetchAllTicketData()
+})
 </script>
 
 <template>
