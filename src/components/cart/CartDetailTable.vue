@@ -46,9 +46,9 @@ const handleDelete = (id) => {
           <span class="sr-only">Image</span>
         </th>
         <th scope="col" class="px-2 py-3">商品名稱</th>
-        <th scope="col" class="px-2 py-3">商品數量</th>
-        <th scope="col" class="px-2 py-3">商品價格</th>
-        <th scope="col" class="px-2 py-3">刪除</th>
+        <th scope="col" class="px-2 py-3">數量</th>
+        <th scope="col" class="px-2 py-3">價格</th>
+        <th scope="col" class="w-10 px-2 py-3 sm:w-fit">刪除</th>
       </tr>
     </thead>
     <tbody>
@@ -92,7 +92,7 @@ const handleDelete = (id) => {
           </div>
         </td>
         <td class="p-2 font-semibold">NT$ {{ cartItem.final_total }}</td>
-        <td class="p-2">
+        <td class="px-3">
           <button class="font-medium" @click="handleDelete(cartItem.id)">
             <FontAwesomeIcon :icon="['fas', 'times']" />
           </button>
