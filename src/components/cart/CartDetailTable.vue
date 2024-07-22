@@ -1,6 +1,45 @@
-<script setup></script>
+<script setup>
+defineProps({
+  cartData: {
+    type: Array,
+    default: () => {
+      return []
+    }
+  }
+})
+const emits = defineEmits({
+  sendQuent: () => {
+    return true
+  },
+  sendDeleId: () => {
+    return true
+  }
+})
+const handleMinusQuenity = (id, qty) => {
+  if (qty <= 1) return
+  const temp = {
+    data: {
+      product_id: id,
+      qty: qty - 1
+    }
+  }
+  emits('sendQuent', temp)
+}
+const handlePlusQuenity = (id, qty) => {
+  const temp = {
+    data: {
+      product_id: id,
+      qty: qty + 1
+    }
+  }
+  emits('sendQuent', temp)
+}
+const handleDelete = (id) => {
+  emits('sendDeleId', id)
+}
+</script>
 <template>
-  <table class="w-full px-2 text-left text-sm rtl:text-right">
+  <table v-if="cartData.lenght != 0" class="w-full px-2 text-left text-sm rtl:text-right">
     <thead class="text-xs uppercase">
       <tr>
         <th scope="col" class="px-16 py-3">
@@ -13,29 +52,44 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="border-b border-black">
+      <tr class="border-b border-black" v-for="cartItem in cartData" :key="cartItem.id">
         <td class="p-4">
-          <img src="" class="max-h-full w-16 max-w-full md:w-32" alt="Apple Watch" />
+          <img
+            :src="cartItem.product.imageUrl"
+            class="max-h-full w-16 max-w-full md:w-32"
+            alt="圖片"
+          />
         </td>
-        <td class="px-6 py-4 font-semibold">Apple Watch</td>
+        <td class="px-6 py-4 font-semibold">{{ cartItem.product.title }}</td>
         <td class="px-6 py-4">
           <div class="flex items-center">
-            <button class="" type="button">-</button>
+            <button
+              class="p-4"
+              type="button"
+              @click="handleMinusQuenity(cartItem.id, cartItem.qty)"
+            >
+              -
+            </button>
             <div>
-              <input
+              <!-- <input
                 type="number"
                 id="first_product"
                 class="block w-14 rounded-lg border px-2.5 py-1 text-sm"
                 placeholder="1"
                 required
-              />
+                :disabled="true"
+                valu="cartItem.qty"
+              /> -->
+              <p class="p-4">{{ cartItem.qty }}</p>
             </div>
-            <button class="" type="button">+</button>
+            <button class="p-4" type="button" @click="handlePlusQuenity(cartItem.id, cartItem.qty)">
+              +
+            </button>
           </div>
         </td>
-        <td class="px-6 py-4 font-semibold">$599</td>
+        <td class="px-6 py-4 font-semibold">NT$ {{ cartItem.final_total }}</td>
         <td class="px-6 py-4">
-          <a href="#" class="font-medium hover:underline">Remove</a>
+          <button class="font-medium" @click="handleDelete(cartItem.id)">刪除</button>
         </td>
       </tr>
     </tbody>
