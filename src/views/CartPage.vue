@@ -2,7 +2,7 @@
 import axios from 'axios'
 import CartDetailTable from '@/components/cart/CartDetailTable.vue'
 import CartOrderTable from '@/components/cart/CartOrderTable.vue'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 const baseURL = import.meta.env.VITE_APP_API_URL
 const apiName = import.meta.env.VITE_APP_API_NAME
 const cartData = ref([])
@@ -27,10 +27,20 @@ const handleModifyQty = async (product) => {
     console.log(error)
   }
 }
-const handleDeletProduct = (dataId) => {
-  console.log(dataId)
+const handleDeletProduct = async (productId) => {
+  try {
+    const response = await axios.delete(`${baseURL}/v2/api/${apiName}/cart/${productId}`)
+    if (response.status === 200) {
+      await getCartsData()
+    }
+  } catch (error) {
+    console.log(error)
+  }
+  // console.log(dataId)
 }
-getCartsData()
+onMounted(async () => {
+  await getCartsData()
+})
 </script>
 <template>
   <div class="flex flex-wrap gap-3 lg:flex-nowrap">
