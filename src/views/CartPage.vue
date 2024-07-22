@@ -1,7 +1,7 @@
 <script setup></script>
 <template>
-  <div class="flex flex-wrap gap-3 md:flex-nowrap">
-    <div class="relative basis-full overflow-x-auto shadow-md sm:rounded-lg md:basis-2/3">
+  <div class="flex flex-wrap gap-3 lg:flex-nowrap">
+    <div class="relative basis-full overflow-x-auto shadow-md sm:rounded-lg lg:basis-2/3">
       <table class="w-full text-left text-sm rtl:text-right">
         <thead class="text-xs uppercase">
           <tr>
@@ -44,7 +44,7 @@
       </table>
     </div>
 
-    <div class="relative basis-full overflow-x-auto shadow-md sm:rounded-lg md:basis-1/3">
+    <div class="relative basis-full overflow-x-auto shadow-md sm:rounded-lg lg:basis-1/3">
       <table class="w-full text-left text-sm rtl:text-right">
         <tbody>
           <tr class="border-b">
