@@ -43,6 +43,11 @@ const router = createRouter({
       path: '/cart',
       name: 'Cart',
       component: () => import('@/views/CartPage.vue')
+    },
+    {
+      path: '/checkoutform',
+      name: 'CheckoutForm',
+      component: () => import('@/views/CheckoutForm.vue')
     }
   ]
 })
