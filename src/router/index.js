@@ -16,7 +16,7 @@ const router = createRouter({
     {
       path: '/active/:pagenum',
       name: 'Active',
-      component: () => import('@/views/ActivePgae.vue'),
+      component: () => import('@/views/ActivePgae.vue')
     },
     {
       path: '/type-active/:type',
@@ -26,20 +26,24 @@ const router = createRouter({
         {
           path: ':page',
           name: 'FilterTick',
-          component: () => import('@/views/TypeActiveContent.vue'),
+          component: () => import('@/views/TypeActiveContent.vue')
         }
       ],
-      redirect: to => {
+      redirect: (to) => {
         // 當只有類型時，重定向到第一頁
         return { name: 'FilterTick', params: { ...to.params, page: '1' } }
       }
     },
     {
       path: '/ticket-detail/:ticketId',
-      name: "TicketDetail",
-      component: () => import('@/views/TicketDetail.vue'),
+      name: 'TicketDetail',
+      component: () => import('@/views/TicketDetail.vue')
+    },
+    {
+      path: '/cart',
+      name: 'Cart',
+      component: () => import('@/views/CartPage.vue')
     }
-
   ]
 })
 
