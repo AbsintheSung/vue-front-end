@@ -38,6 +38,7 @@ const handleDeletProduct = async (productId) => {
   }
   // console.log(dataId)
 }
+
 onMounted(async () => {
   await getCartsData()
 })
