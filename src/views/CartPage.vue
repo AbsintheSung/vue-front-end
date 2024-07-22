@@ -14,8 +14,18 @@ const getCartsData = async () => {
   priceData.value = { final_total: finalTotal, total }
   cartData.value = response.data.data.carts
 }
-const handleModifyQty = (data) => {
-  console.log(data)
+const handleModifyQty = async (product) => {
+  try {
+    const response = await axios.put(
+      `${baseURL}/v2/api/${apiName}/cart/${product.data.product_id}`,
+      product
+    )
+    if (response.status === 200) {
+      await getCartsData()
+    }
+  } catch (error) {
+    console.log(error)
+  }
 }
 const handleDeletProduct = (dataId) => {
   console.log(dataId)
@@ -24,7 +34,7 @@ getCartsData()
 </script>
 <template>
   <div class="flex flex-wrap gap-3 lg:flex-nowrap">
-    <div class="relative basis-full overflow-x-auto shadow-md sm:rounded-lg lg:basis-2/3">
+    <div class="relative basis-full shadow-md sm:rounded-lg lg:basis-2/3">
       <CartDetailTable
         :cartData="cartDataComputed"
         @sendQuent="handleModifyQty"

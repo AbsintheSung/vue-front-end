@@ -93,7 +93,9 @@ const handleDelete = (id) => {
         </td>
         <td class="p-2 font-semibold">NT$ {{ cartItem.final_total }}</td>
         <td class="p-2">
-          <button class="font-medium" @click="handleDelete(cartItem.id)">刪除</button>
+          <button class="font-medium" @click="handleDelete(cartItem.id)">
+            <FontAwesomeIcon :icon="['fas', 'times']" />
+          </button>
         </td>
       </tr>
     </tbody>
