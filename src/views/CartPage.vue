@@ -2,7 +2,7 @@
 import axios from 'axios'
 import CartDetailTable from '@/components/cart/CartDetailTable.vue'
 import CartOrderTable from '@/components/cart/CartOrderTable.vue'
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, provide, readonly } from 'vue'
 const baseURL = import.meta.env.VITE_APP_API_URL
 const apiName = import.meta.env.VITE_APP_API_NAME
 const cartData = ref([])
@@ -38,7 +38,17 @@ const handleDeletProduct = async (productId) => {
   }
   // console.log(dataId)
 }
-
+const handleDeleteAll = async () => {
+  try {
+    const response = await axios.delete(`${baseURL}/v2/api/${apiName}/carts`)
+    if (response.status === 200) {
+      await getCartsData()
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+provide('handleDeleteAll', handleDeleteAll)
 onMounted(async () => {
   await getCartsData()
 })

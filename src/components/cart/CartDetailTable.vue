@@ -1,4 +1,6 @@
 <script setup>
+import { inject } from 'vue'
+
 defineProps({
   cartData: {
     type: Array,
@@ -37,6 +39,7 @@ const handlePlusQuenity = (id, qty) => {
 const handleDelete = (id) => {
   emits('sendDeleId', id)
 }
+const dellAll = inject('handleDeleteAll')
 </script>
 <template>
   <template v-if="cartData.length > 0">
@@ -102,7 +105,9 @@ const handleDelete = (id) => {
       </tbody>
     </table>
     <div class="m-2 flex">
-      <button class="ms-auto bg-black p-2 font-noto text-[#FBFF22]">刪除全部商品</button>
+      <button class="ms-auto bg-black p-2 font-noto text-[#FBFF22]" @click="dellAll">
+        刪除全部商品
+      </button>
     </div>
   </template>
   <div v-else class="flex h-full items-center justify-center">
