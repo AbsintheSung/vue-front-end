@@ -66,10 +66,6 @@
         <button class="my-4 w-full bg-black py-4 text-center text-[#FBFF22]">結帳</button>
       </div>
     </div>
-
-    <!-- <div class="basis-full md:basis-1/3 p-6">
-
-    </div> -->
   </div>
 </template>
 <style scoped></style>
