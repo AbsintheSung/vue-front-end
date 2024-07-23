@@ -12,11 +12,16 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
         7TAO<span class="ms-1 font-noto text-base font-bold">活動訂票網</span>
       </h2>
 
-      <input
-        type="text"
-        class="ms-6 block border border-gray-900 py-4 ps-5 sm:ms-12"
-        placeholder="請輸入搜尋"
-      />
+      <div class="flex">
+        <input
+          type="text"
+          class="ms-6 block border border-gray-900 bg-custom-bg-1 py-3 ps-5 sm:ms-12"
+          placeholder="探索活動"
+        />
+        <button class="flex items-center justify-center bg-black p-4 text-[#FBFF22]">
+          <FontAwesomeIcon :icon="['fas', 'magnifying-glass']" />
+        </button>
+      </div>
 
       <ul class="ms-auto hidden md:flex">
         <li>HTML</li>
@@ -25,7 +30,9 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
       </ul>
 
       <DisclosureButton as="template" class="ms-auto block md:hidden">
-        <button>點我點我</button>
+        <button class="flex items-center justify-center rounded-lg border-2 border-black p-4">
+          <FontAwesomeIcon :icon="['fas', 'bars']" />
+        </button>
       </DisclosureButton>
     </nav>
     <DisclosurePanel as="ul" class="block px-6 md:hidden">
