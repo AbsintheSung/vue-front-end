@@ -9,46 +9,54 @@ const schema = userSchema
     <img class="mx-auto" :src="imgIcon" />
     <h2 class="text-center font-noto text-2xl font-bold">聯絡人資訊</h2>
   </div>
-  <form class="mx-auto w-full font-noto md:w-2/3">
+  <Form :validation-schema="schema" class="mx-auto w-full font-noto md:w-2/3">
     <div class="mb-5">
       <label for="useremail" class="mb-2 block text-sm font-medium">電子信箱-Email</label>
-      <input
+      <Field
         type="text"
         id="useremail"
+        name="useremail"
         class="block w-full rounded-lg border-2 border-black bg-custom-bg-1 p-2.5 text-sm"
         placeholder="Bonnie Green"
       />
-      <p class="mt-2 text-sm font-bold text-red-600">Oops! Username already taken!</p>
+      <ErrorMessage name="useremail" class="mt-2 text-sm font-bold text-red-600" />
+      <!-- <p class="mt-2 text-sm font-bold text-red-600">Oops! Username already taken!</p> -->
     </div>
     <div class="mb-5">
       <label for="username" class="mb-2 block text-sm font-medium">姓名</label>
-      <input
+      <Field
         type="text"
         id="username"
+        name="username"
         class="block w-full rounded-lg border-2 border-black bg-custom-bg-1 p-2.5 text-sm"
         placeholder="Bonnie Green"
       />
-      <p class="mt-2 text-sm font-bold text-red-600">Oops! Username already taken!</p>
+      <ErrorMessage name="username" class="mt-2 text-sm font-bold text-red-600" />
+      <!-- <p class="mt-2 text-sm font-bold text-red-600">Oops! Username already taken!</p> -->
     </div>
     <div class="mb-5">
       <label for="userphone" class="mb-2 block text-sm font-medium">電話</label>
-      <input
+      <Field
         type="tel"
         id="userphone"
+        name="userphone"
         class="block w-full rounded-lg border-2 border-black bg-custom-bg-1 p-2.5 text-sm"
         placeholder="Bonnie Green"
       />
-      <p class="mt-2 text-sm font-bold text-red-600">Oops! Username already taken!</p>
+      <ErrorMessage name="userphone" class="mt-2 text-sm font-bold text-red-600" />
+      <!-- <p class="mt-2 text-sm font-bold text-red-600">Oops! Username already taken!</p> -->
     </div>
     <div class="mb-5">
       <label for="useraddress" class="mb-2 block text-sm font-medium">地址</label>
-      <input
+      <Field
         type="text"
         id="useraddress"
+        name="useraddress"
         class="block w-full rounded-lg border-2 border-black bg-custom-bg-1 p-2.5 text-sm"
         placeholder="Bonnie Green"
       />
-      <p class="mt-2 text-sm font-bold text-red-600">Oops! Username already taken!</p>
+      <ErrorMessage name="userphone" class="mt-2 text-sm font-bold text-red-600" />
+      <!-- <p class="mt-2 text-sm font-bold text-red-600">Oops! Username already taken!</p> -->
     </div>
     <div class="mb-5">
       <label for="usermessage" class="mb-2 block text-sm font-medium">留言</label>
@@ -59,6 +67,6 @@ const schema = userSchema
         placeholder="Bonnie Green"
       />
     </div>
-  </form>
+  </Form>
 </template>
 <style scoped></style>
