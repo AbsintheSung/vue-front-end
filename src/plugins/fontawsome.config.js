@@ -7,7 +7,9 @@ import {
   faPlus,
   faTimes,
   faMagnifyingGlass,
-  faBarsProgress
+  faBarsProgress,
+  faClipboard,
+  faShoppingCart
 } from '@fortawesome/free-solid-svg-icons'
-library.add(faBars, faAnglesRight, faMinus, faPlus, faTimes, faMagnifyingGlass, faBarsProgress)
+library.add(faBars, faAnglesRight, faMinus, faPlus, faTimes, faMagnifyingGlass, faBarsProgress, faClipboard, faShoppingCart)
 export { FontAwesomeIcon }
