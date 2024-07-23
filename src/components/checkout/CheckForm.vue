@@ -32,9 +32,6 @@ const schema = userSchema
     <img class="mx-auto" :src="imgIcon" />
     <h2 class="text-center font-noto text-2xl font-bold">聯絡人資訊</h2>
   </div>
-  <p>
-    {{ userInput }}
-  </p>
   <Form :validation-schema="schema" class="mx-auto w-full font-noto md:w-2/3">
     <template v-for="inputItem in inputInfo" :key="inputItem.id">
       <FormInput :inputInfo="inputItem" v-model:userInput="userInput[inputItem.id]" />
@@ -93,6 +90,11 @@ const schema = userSchema
         placeholder="Bonnie Green"
         v-model="userInput.message"
       />
+    </div>
+    <div class="flex items-center justify-center py-4">
+      <button type="submit" class="mx-auto w-full bg-black py-2 text-white md:w-1/2" @click.prevent>
+        確認結帳
+      </button>
     </div>
   </Form>
 </template>
