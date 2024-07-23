@@ -27,7 +27,7 @@ export default {
         noto: ['"Noto Serif TC"', 'serif']
       },
       backgroundColor: {
-        'custom-bg-1': '#F3F1E5'
+        'custom-bg-1': '#F3F1E5',
       },
       color: {}
     }
