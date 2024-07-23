@@ -23,7 +23,7 @@ const props = defineProps({
 const pages = computed(() => {
   const { current_page, has_next, has_pre, total_pages } = props.pageInfo
   return {
-    currentPage: current_page,
+    currentPage: current_page === 0 ? 1 : current_page,
     hasNext: has_next,
     hasPrevious: has_pre,
     totalPages: total_pages
