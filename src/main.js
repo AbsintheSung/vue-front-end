@@ -9,7 +9,7 @@ import VueAwesomePaginate from "vue-awesome-paginate";
 // import the necessary css file
 
 import "vue-awesome-paginate/dist/style.css";
-
+import '@/plugins/vee-vailbate.config';
 const app = createApp(App)
 app.use(createPinia())
 app.use(VueAwesomePaginate)
