@@ -24,7 +24,9 @@ const inputInfo = [
   { title: '電話', type: 'tel', id: 'tel', name: 'userphone', placeholder: 'ex:0900000000' },
   { title: '地址', type: 'text', id: 'address', name: 'useraddress', placeholder: '請輸入聯絡地址' }
 ]
-
+const fetUserDate = () => {
+  console.log(userInput.value)
+}
 const schema = userSchema
 </script>
 <template>
@@ -92,7 +94,11 @@ const schema = userSchema
       />
     </div>
     <div class="flex items-center justify-center py-4">
-      <button type="submit" class="mx-auto w-full bg-black py-2 text-white md:w-1/2" @click.prevent>
+      <button
+        type="submit"
+        class="mx-auto w-full bg-black py-2 text-white md:w-1/2"
+        @click.prevent="fetUserDate"
+      >
         確認結帳
       </button>
     </div>
