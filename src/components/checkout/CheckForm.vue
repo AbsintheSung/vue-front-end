@@ -28,7 +28,7 @@ const inputInfo = [
   { title: '電話', type: 'tel', id: 'tel', name: 'userphone', placeholder: 'ex:0900000000' },
   { title: '地址', type: 'text', id: 'address', name: 'useraddress', placeholder: '請輸入聯絡地址' }
 ]
-const fetUserDate = async (validate, resetForm) => {
+const fetchUserDate = async (validate, resetForm) => {
   const validateRes = await validate()
   if (!validateRes.valid) return
   const orderData = {
@@ -127,7 +127,7 @@ const fetUserDate = async (validate, resetForm) => {
       <button
         type="submit"
         class="mx-auto w-full bg-black py-2 text-white md:w-1/2"
-        @click.prevent="fetUserDate(validate, resetForm)"
+        @click.prevent="fetchUserDate(validate, resetForm)"
       >
         確認結帳
       </button>
