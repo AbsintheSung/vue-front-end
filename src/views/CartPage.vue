@@ -2,7 +2,7 @@
 import axios from 'axios'
 import CartDetailTable from '@/components/cart/CartDetailTable.vue'
 import CartOrderTable from '@/components/cart/CartOrderTable.vue'
-import { ref, computed, onMounted, provide, readonly } from 'vue'
+import { ref, computed, onMounted, provide } from 'vue'
 const baseURL = import.meta.env.VITE_APP_API_URL
 const apiName = import.meta.env.VITE_APP_API_NAME
 const cartData = ref([])
