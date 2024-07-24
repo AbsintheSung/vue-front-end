@@ -14,6 +14,15 @@ const getOneOrder = async () => {
   console.log(response)
 }
 
+const creatPay = async () => {
+  try {
+    const response = await axios.post(`${baseURL}/v2/api/${apiName}/pay/${orderId}`)
+    console.log(response)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 onMounted(() => {
   getOneOrder()
 })
@@ -50,7 +59,9 @@ console.log(router.params.orderId)
     </table> -->
     <OrderUserInfo />
     <div class="my-5 flex items-center justify-center">
-      <button class="w-full bg-black py-2 text-white sm:w-fit sm:px-14">確認付款</button>
+      <button class="w-full bg-black py-2 text-white sm:w-fit sm:px-14" @click="creatPay">
+        確認付款
+      </button>
     </div>
   </div>
 </template>

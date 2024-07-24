@@ -3,9 +3,7 @@
   <table class="w-full text-left text-sm rtl:text-right">
     <thead>
       <tr>
-        <th scope="col" class="hidden px-28 py-3 md:block">
-          <span class="sr-only">Image</span>
-        </th>
+        <th scope="col" class="hidden px-28 py-3 md:block"></th>
         <th scope="col" class="w-1/2 whitespace-nowrap px-6 py-3">商品名稱</th>
         <th scope="col" class="w-1/4 whitespace-nowrap px-6 py-3">數量</th>
         <th scope="col" class="w-1/4 whitespace-nowrap px-6 py-3">價格</th>
