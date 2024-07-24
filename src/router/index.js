@@ -53,7 +53,30 @@ const router = createRouter({
       path: '/orderpay/:orderId',
       name: 'OrderPay',
       component: () => import('@/views/OrderPage.vue')
+    },
+    {
+      path: '/order-list/:pageNum?',
+      name: 'OrderList',
+      component: () => import('@/views/OrderListPage.vue'),
+      beforeEnter: (to, from, next) => {
+        if (!to.params.pageNum || to.params.pageNum <= 0) {
+          next({ name: 'OrderList', params: { pageNum: '1' } });
+        } else {
+          next();
+        }
+      }
     }
+    // {
+    //   path: '/order-list/:pageNum',
+    //   name: 'OrderList',
+    //   component: () => import('@/views/OrderListPage.vue'),
+    //   redirect: (to) => {
+    //     console.log('測試', to)
+    //     if (!to.params.pageNum) {
+    //       return { name: 'OrderList', params: { pageNum: '1' } }
+    //     }
+    //   }
+    // }
   ]
 })
 
