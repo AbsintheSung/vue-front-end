@@ -27,7 +27,13 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 
       <ul class="ms-auto hidden gap-4 font-noto md:flex">
         <li><FontAwesomeIcon :icon="['fas', 'clipboard']" class="px-2" />訂單明細</li>
-        <li><FontAwesomeIcon :icon="['fas', 'shopping-cart']" class="px-2" />購物車</li>
+        <li class="relative">
+          <span
+            class="absolute -top-2 left-5 -z-10 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs text-white"
+            >12</span
+          >
+          <FontAwesomeIcon :icon="['fas', 'shopping-cart']" class="px-2" />
+        </li>
       </ul>
 
       <DisclosureButton as="template" class="ms-auto block md:hidden">
