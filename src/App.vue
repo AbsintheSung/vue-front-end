@@ -17,10 +17,13 @@ import { RouterView } from 'vue-router'
 //   await tickStore.fetchAllTicketData()
 // })
 import { useTicketStore } from '@/stores/ticket'
+import { useCartStore } from '@/stores/cart'
 import { onMounted } from 'vue'
 const tickStore = useTicketStore()
+const cartStore = useCartStore()
 onMounted(() => {
   tickStore.fetchAllTicketData()
+  cartStore.fetchCartData()
 })
 </script>
 

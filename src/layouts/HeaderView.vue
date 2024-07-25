@@ -1,6 +1,8 @@
 <script setup>
 import logoImage from '@/assets/images/logo.png'
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
+import { useCartStore } from '@/stores/cart'
+const cartStore = useCartStore()
 </script>
 <template>
   <Disclosure as="header" class="relative">
@@ -26,8 +28,20 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
       </div>
 
       <ul class="ms-auto hidden gap-4 font-noto md:flex">
-        <li><FontAwesomeIcon :icon="['fas', 'clipboard']" class="px-2" />訂單明細</li>
-        <li><FontAwesomeIcon :icon="['fas', 'shopping-cart']" class="px-2" />購物車</li>
+        <li>
+          <router-link to="/order-list/"
+            ><FontAwesomeIcon :icon="['fas', 'clipboard']" class="px-2" />訂單明細</router-link
+          >
+        </li>
+        <li class="relative">
+          <router-link to="/cart">
+            <span
+              class="absolute -top-2 left-5 -z-10 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs text-white"
+              >{{ cartStore.getCartLength }}</span
+            >
+            <FontAwesomeIcon :icon="['fas', 'shopping-cart']" class="px-2" />
+          </router-link>
+        </li>
       </ul>
 
       <DisclosureButton as="template" class="ms-auto block md:hidden">
@@ -41,8 +55,12 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
       as="ul"
       class="absolute left-0 top-full z-50 flex w-full flex-col gap-4 bg-[#F3F1E5] p-6 shadow-lg md:hidden"
     >
-      <li class="text-center">訂單明細</li>
-      <li class="text-center">購物車</li>
+      <li class="text-center">
+        <router-link to="/order-list/">訂單明細</router-link>
+      </li>
+      <li class="text-center">
+        <router-link to="/cart">購物車({{ cartStore.getCartLength }})</router-link>
+      </li>
     </DisclosurePanel>
   </Disclosure>
 </template>
