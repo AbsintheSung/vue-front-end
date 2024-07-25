@@ -1,7 +1,9 @@
 <script setup>
 import axios from 'axios'
 import ActiveTitle from '@/components/ActiveTitle.vue'
-import { onMounted, ref } from 'vue'
+import CardSwiper from '@/components/CardSwiper.vue'
+import { useTicketStore } from '@/stores/ticket'
+import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 const tichetId = route.params.ticketId // 獲取路由的id ( 發送獲取資料api需要此id資訊 )
@@ -9,7 +11,7 @@ const baseURL = import.meta.env.VITE_APP_API_URL
 const apiName = import.meta.env.VITE_APP_API_NAME
 const ticketData = ref({}) // 門票資料，一開始為空，從遠端獲取資料後會存到此處
 const quenity = ref(1) // 數量資料
-
+const tickStore = useTicketStore()
 //遠端獲取單一門票資料
 const getTicketInfo = async (tichetId) => {
   try {
@@ -64,6 +66,12 @@ const handleTickInfo = async () => {
 onMounted(async () => {
   await getTicketInfo(tichetId)
 })
+watch(
+  () => route.params.ticketId,
+  async (newId) => {
+    await getTicketInfo(newId)
+  }
+)
 </script>
 <template>
   <!-- <main class="container"> -->
@@ -129,6 +137,10 @@ onMounted(async () => {
     <p class="border-2 border-black p-4 leading-8 md:p-8">
       {{ ticketData.content }}
     </p>
+  </section>
+  <section>
+    <h2 class="my-6 font-noto text-3xl font-bold">其餘活動</h2>
+    <CardSwiper :allProductData="tickStore.getTicketAllData" />
   </section>
 
   <!-- </main> -->
