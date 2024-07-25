@@ -1,7 +1,9 @@
 <script setup>
 import axios from 'axios'
 import ActiveTitle from '@/components/ActiveTitle.vue'
-import { onMounted, ref } from 'vue'
+import CardSwiper from '@/components/CardSwiper.vue'
+import { useTicketStore } from '@/stores/ticket'
+import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 const tichetId = route.params.ticketId // 獲取路由的id ( 發送獲取資料api需要此id資訊 )
@@ -9,7 +11,7 @@ const baseURL = import.meta.env.VITE_APP_API_URL
 const apiName = import.meta.env.VITE_APP_API_NAME
 const ticketData = ref({}) // 門票資料，一開始為空，從遠端獲取資料後會存到此處
 const quenity = ref(1) // 數量資料
-
+const tickStore = useTicketStore()
 //遠端獲取單一門票資料
 const getTicketInfo = async (tichetId) => {
   try {
@@ -64,12 +66,18 @@ const handleTickInfo = async () => {
 onMounted(async () => {
   await getTicketInfo(tichetId)
 })
+watch(
+  () => route.params.ticketId,
+  async (newId) => {
+    await getTicketInfo(newId)
+  }
+)
 </script>
 <template>
   <!-- <main class="container"> -->
   <section class="grid grid-cols-1 gap-2 md:grid-cols-6 md:gap-6">
     <div class="col-span-1 border-2 border-black p-3 md:col-span-5 md:p-6">
-      <img class="h-full w-full object-cover" :src="ticketData.imageUrl" />
+      <img class="h-full max-h-[500px] w-full object-cover" :src="ticketData.imageUrl" />
     </div>
     <div class="flex gap-2 font-yeseva md:flex-col md:gap-6">
       <div class="border-2 border-black px-4 py-6 text-2xl md:px-0 md:py-8">
@@ -129,6 +137,10 @@ onMounted(async () => {
     <p class="border-2 border-black p-4 leading-8 md:p-8">
       {{ ticketData.content }}
     </p>
+  </section>
+  <section>
+    <h2 class="my-6 font-noto text-3xl font-bold">其餘活動</h2>
+    <CardSwiper :allProductData="tickStore.getTicketAllData" />
   </section>
 
   <!-- </main> -->

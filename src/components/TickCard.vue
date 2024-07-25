@@ -7,19 +7,6 @@ const props = defineProps({
     }
   }
 })
-/*
-category: "演出"
-content: "你也是那種動不動就容易放空、神遊的人嗎？這輩子靠這技能出頭的機會來了，在恆春山林一起神遊、盡情地發呆吧！冠軍可以得到價值十萬的綿豆腐床墊一張！"
-description: "你也是那種動不動就容易放空、神遊的人嗎？這輩子靠這技能出頭的機會來了，在恆春山林一起神遊、盡情地發呆吧！冠軍可以得到價值十萬的綿豆腐床墊一張！"
-id: "-O2EESjh6bswmocISvay"
-imageUrl: "https://github.com/AbsintheSung/7TAO_webpage/blob/main/assets/images/event/12.jpg?raw=true"
-is_enabled: 1
-num: 1
-origin_price: 6300
-price: 3200
-title: "野營發呆大賽"
-unit: "張"
-*/
 </script>
 <template>
   <li v-if="Object.keys(props.cardItem).length > 0">
