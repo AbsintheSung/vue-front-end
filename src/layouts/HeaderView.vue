@@ -1,6 +1,8 @@
 <script setup>
 import logoImage from '@/assets/images/logo.png'
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
+import { useCartStore } from '@/stores/cart'
+const cartStore = useCartStore()
 </script>
 <template>
   <Disclosure as="header" class="relative">
@@ -30,7 +32,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
         <li class="relative">
           <span
             class="absolute -top-2 left-5 -z-10 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs text-white"
-            >12</span
+            >{{ cartStore.getCartLength }}</span
           >
           <FontAwesomeIcon :icon="['fas', 'shopping-cart']" class="px-2" />
         </li>
@@ -48,7 +50,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
       class="absolute left-0 top-full z-50 flex w-full flex-col gap-4 bg-[#F3F1E5] p-6 shadow-lg md:hidden"
     >
       <li class="text-center">訂單明細</li>
-      <li class="text-center">購物車</li>
+      <li class="text-center">購物車({{ cartStore.getCartLength }})</li>
     </DisclosurePanel>
   </Disclosure>
 </template>
