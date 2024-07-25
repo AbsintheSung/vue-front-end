@@ -19,7 +19,17 @@ export const useCartStore = defineStore('cart', () => {
             console.log(error)
         }
     }
+    const fetchAddCart = async (dataInfo) => {
+        try {
+            const response = await axios.post(`${baseURL}/v2/api/${apiName}/cart`, dataInfo)
+            if (response.status === 200) {
+                await fetchCartData()
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
     return {
-        fetchCartData, getCartLength
+        fetchCartData, fetchAddCart, getCartLength
     }
 })

@@ -5,6 +5,8 @@ import CardSwiper from '@/components/CardSwiper.vue'
 import { useTicketStore } from '@/stores/ticket'
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { useCartStore } from '@/stores/cart'
+const cartStore = useCartStore()
 const route = useRoute()
 const tichetId = route.params.ticketId // 獲取路由的id ( 發送獲取資料api需要此id資訊 )
 const baseURL = import.meta.env.VITE_APP_API_URL
@@ -59,16 +61,18 @@ const handleTickInfo = async () => {
       qty: quenity.value
     }
   }
-  try {
-    const response = await axios.post(`${baseURL}/v2/api/${apiName}/cart`, dataInfo)
-    // console.log(response.status, response.data);
-    if (response.status === 200) {
-      quenity.value = 1
-      console.log(response, '顯示彈窗，確認是否繼續購物跳轉product頁面或是購物車明細頁面')
-    }
-  } catch (error) {
-    console.log(error)
-  }
+  await cartStore.fetchAddCart(dataInfo)
+  console.log('顯示彈窗，確認是否繼續購物跳轉product頁面或是購物車明細頁面')
+  // try {
+  //   const response = await axios.post(`${baseURL}/v2/api/${apiName}/cart`, dataInfo)
+  //   // console.log(response.status, response.data);
+  //   if (response.status === 200) {
+  //     quenity.value = 1
+  //     console.log(response, '顯示彈窗，確認是否繼續購物跳轉product頁面或是購物車明細頁面')
+  //   }
+  // } catch (error) {
+  //   console.log(error)
+  // }
 }
 onMounted(async () => {
   await getTicketInfo(tichetId)
