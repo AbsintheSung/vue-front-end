@@ -77,7 +77,7 @@ watch(
   <!-- <main class="container"> -->
   <section class="grid grid-cols-1 gap-2 md:grid-cols-6 md:gap-6">
     <div class="col-span-1 border-2 border-black p-3 md:col-span-5 md:p-6">
-      <img class="h-full w-full object-cover" :src="ticketData.imageUrl" />
+      <img class="h-full max-h-[500px] w-full object-cover" :src="ticketData.imageUrl" />
     </div>
     <div class="flex gap-2 font-yeseva md:flex-col md:gap-6">
       <div class="border-2 border-black px-4 py-6 text-2xl md:px-0 md:py-8">
