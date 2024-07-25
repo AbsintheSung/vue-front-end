@@ -3,7 +3,7 @@ import axios from 'axios'
 import ActiveTitle from '@/components/ActiveTitle.vue'
 import CardSwiper from '@/components/CardSwiper.vue'
 import { useTicketStore } from '@/stores/ticket'
-import { onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 const tichetId = route.params.ticketId // 獲取路由的id ( 發送獲取資料api需要此id資訊 )
@@ -11,6 +11,13 @@ const baseURL = import.meta.env.VITE_APP_API_URL
 const apiName = import.meta.env.VITE_APP_API_NAME
 const ticketData = ref({}) // 門票資料，一開始為空，從遠端獲取資料後會存到此處
 const quenity = ref(1) // 數量資料
+const imgUrlData = computed(() => {
+  if (Array.isArray(ticketData.value.imageUrls)) {
+    return [ticketData.value.imageUrl, ...ticketData.value.imageUrls]
+  } else {
+    return [ticketData.value.imageUrl]
+  }
+})
 const tickStore = useTicketStore()
 //遠端獲取單一門票資料
 const getTicketInfo = async (tichetId) => {
@@ -100,7 +107,11 @@ watch(
   <section class="my-6 font-noto">
     <div class="flex flex-wrap gap-6 md:flex-nowrap">
       <div class="w-full md:w-1/2">
-        <p>我是輪播圖片</p>
+        <el-carousel indicator-position="none">
+          <el-carousel-item v-for="item in imgUrlData" :key="item">
+            <img :src="item" class="h-full w-full" />
+          </el-carousel-item>
+        </el-carousel>
       </div>
       <div class="w-full md:w-1/2">
         <h2 class="text-2xl font-bold md:text-4xl">{{ ticketData.title }}</h2>
