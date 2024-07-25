@@ -10,6 +10,7 @@ const route = useRoute()
 const router = useRouter()
 const page = route.params.pageNum
 const pageInfo = ref({})
+const isPageInfoEmpty = computed(() => Object.keys(pageInfo.value).length === 0) //判斷是否為空物件
 const orderList = ref([])
 const formatOrderList = computed(() => {
   if (orderList.value.length === 0) {
@@ -51,7 +52,7 @@ const fetchOrderDetail = (orderId) => {
 <template>
   <OrderListTable :orderItem="formatOrderList" @sendOrderId="fetchOrderDetail" />
 
-  <div class="mt-auto flex py-6">
-    <PaginatePage></PaginatePage>
+  <div class="mt-auto flex py-6" v-if="!isPageInfoEmpty">
+    <PaginatePage :pageInfo="pageInfo"></PaginatePage>
   </div>
 </template>
