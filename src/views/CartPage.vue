@@ -99,10 +99,11 @@ const closrModal = () => {
   delProductId.value = ''
   delProductTitle.value = ''
 }
-const postCoupon = async () => {
+const userInputCoupon = ref('')
+const fetchCoupon = async () => {
   const couponInfo = {
     data: {
-      code: 'testCode'
+      code: userInputCoupon.value
     }
   }
   try {
@@ -110,6 +111,8 @@ const postCoupon = async () => {
     const response = await axios.post(`${baseURL}/v2/api/${apiName}/coupon`, couponInfo)
     if (response.status === 200) {
       await cartStore.fetchCartData()
+      successMes(response.data.message)
+      userInputCoupon.value = ''
     }
     // console.log(response)
   } catch (error) {
@@ -148,7 +151,11 @@ onMounted(async () => {
     </div>
 
     <div class="relative basis-full overflow-x-auto shadow-md sm:rounded-lg lg:basis-1/3">
-      <CartOrderTable :getPrice="cartStore.getPriceData" :postCoupon="postCoupon" />
+      <CartOrderTable
+        :getPrice="cartStore.getPriceData"
+        :postCoupon="fetchCoupon"
+        v-model:userInputCoupon="userInputCoupon"
+      />
     </div>
   </div>
 </template>

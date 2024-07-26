@@ -1,5 +1,6 @@
 <script setup>
-const props = defineProps({
+const userCouponValue = defineModel('userInputCoupon', { type: String })
+defineProps({
   getPrice: {
     type: Object,
     defauit: () => ({})
@@ -9,9 +10,6 @@ const props = defineProps({
     defauit: () => {}
   }
 })
-setTimeout(() => {
-  console.log(props.getPrice)
-}, 3000)
 </script>
 <template>
   <table class="w-full text-left font-yeseva text-sm rtl:text-right">
@@ -27,10 +25,19 @@ setTimeout(() => {
     </tbody>
   </table>
   <div class="p-6 font-noto">
-    <h3>套用優惠券</h3>
-    <div class="flex w-full">
-      <input type="text" class="my-2 flex-grow p-2" />
-      <button class="flex-shrink-0" @click="postCoupon">我是按鈕</button>
+    <h3 class="mb-4">套用優惠券</h3>
+    <div class="flex w-full items-stretch">
+      <input
+        type="text"
+        class="w-full flex-grow border-2 border-r-0 border-black bg-custom-bg-1 p-2 focus:outline-none"
+        v-model="userCouponValue"
+      />
+      <button
+        class="flex items-center justify-center border-2 border-l-0 border-black bg-black px-4"
+        @click="postCoupon"
+      >
+        <FontAwesomeIcon :icon="['fas', 'paper-plane']" class="text-[#FBFF22]" />
+      </button>
     </div>
     <button class="my-4 w-full bg-black py-4 text-center text-[#FBFF22]">確認</button>
   </div>
