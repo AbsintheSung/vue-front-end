@@ -7,12 +7,14 @@ import { ref } from 'vue'
 import axios from 'axios'
 import imgIcon from '@/assets/images/sparkler.png'
 import FormInput from './FormInput.vue'
+import { useCartStore } from '@/stores/cart'
 import { useRouter } from 'vue-router'
 const baseURL = import.meta.env.VITE_APP_API_URL
 const apiName = import.meta.env.VITE_APP_API_NAME
 const schema = userSchema
 const isLoading = ref(false)
 const router = useRouter()
+const cartStore = useCartStore()
 const initUserInput = {
   name: '',
   email: '',
@@ -53,7 +55,8 @@ const fetchUserDate = async (validate, resetForm) => {
     console.log(response)
     if (response.status === 200) {
       resetForm()
-      userInput.value = { ...initUserInput } //初始化
+      userInput.value = { ...initUserInput } //
+      await cartStore.fetchCartData()
       successMes(response.data.message)
       router.push(`/orderpay/${response.data.orderId}`)
       // console.log('添加成功')
