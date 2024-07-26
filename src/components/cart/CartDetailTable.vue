@@ -1,6 +1,5 @@
 <script setup>
-import { inject } from 'vue'
-
+import DialogModal from '../DelDialogModal.vue'
 defineProps({
   cartData: {
     type: Array,
@@ -36,12 +35,12 @@ const handlePlusQuenity = (id, qty) => {
   }
   emits('sendQuent', temp)
 }
-const handleDelete = (id) => {
-  emits('sendDeleId', id)
+const handleDelete = (id, title) => {
+  emits('sendDeleId', id, title)
 }
-const dellAll = inject('handleDeleteAll')
 </script>
 <template>
+  <DialogModal />
   <template v-if="cartData.length > 0">
     <table class="w-full px-2 text-left font-yeseva text-sm rtl:text-right">
       <thead class="text-xs uppercase">
@@ -97,7 +96,7 @@ const dellAll = inject('handleDeleteAll')
           </td>
           <td class="p-2 font-semibold">NT$ {{ cartItem.final_total }}</td>
           <td class="px-3">
-            <button class="font-medium" @click="handleDelete(cartItem.id)">
+            <button class="font-medium" @click="handleDelete(cartItem.id, cartItem.product.title)">
               <FontAwesomeIcon :icon="['fas', 'times']" />
             </button>
           </td>
@@ -105,7 +104,10 @@ const dellAll = inject('handleDeleteAll')
       </tbody>
     </table>
     <div class="m-2 flex">
-      <button class="ms-auto bg-black p-2 font-noto text-[#FBFF22]" @click="dellAll">
+      <button
+        class="ms-auto bg-black p-2 font-noto text-[#FBFF22]"
+        @click="handleDelete('all', 'all')"
+      >
         刪除全部商品
       </button>
     </div>
