@@ -8,6 +8,10 @@ defineProps({
   postCoupon: {
     type: Function,
     defauit: () => {}
+  },
+  confirmJump: {
+    type: Function,
+    defauit: () => {}
   }
 })
 </script>
@@ -39,7 +43,9 @@ defineProps({
         <FontAwesomeIcon :icon="['fas', 'paper-plane']" class="text-[#FBFF22]" />
       </button>
     </div>
-    <button class="my-4 w-full bg-black py-4 text-center text-[#FBFF22]">確認</button>
+    <button class="my-4 w-full bg-black py-4 text-center text-[#FBFF22]" @click="confirmJump">
+      確認
+    </button>
   </div>
 </template>
 <style scoped></style>

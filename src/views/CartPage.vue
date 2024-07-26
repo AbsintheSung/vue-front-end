@@ -7,6 +7,7 @@ import DelDialogModal from '@/components/DelDialogModal.vue'
 import { useCartStore } from '@/stores/cart'
 import 'element-plus/es/components/message/style/css' //需手動導入message樣式，否則message會沒有效果
 import { ElMessage } from 'element-plus'
+import { useRouter } from 'vue-router'
 const baseURL = import.meta.env.VITE_APP_API_URL
 const apiName = import.meta.env.VITE_APP_API_NAME
 // const cartData = ref([])
@@ -16,6 +17,7 @@ const delProductId = ref('') //存放要刪除單品的id
 const delProductTitle = ref('') //存放要刪除單品的title
 const modalShow = ref(false) //用來開啟 dialog的設定
 const cartStore = useCartStore()
+const router = useRouter()
 // const cartDataComputed = computed(() => cartData.value)
 const getCartsData = async () => {
   isLoading.value = true
@@ -121,6 +123,9 @@ const fetchCoupon = async () => {
     isLoading.value = false
   }
 }
+const confirm = () => {
+  router.push('/checkoutform')
+}
 const successMes = (mes = '刪除成功') => {
   ElMessage({
     message: mes,
@@ -154,6 +159,7 @@ onMounted(async () => {
       <CartOrderTable
         :getPrice="cartStore.getPriceData"
         :postCoupon="fetchCoupon"
+        :confirmJump="confirm"
         v-model:userInputCoupon="userInputCoupon"
       />
     </div>
