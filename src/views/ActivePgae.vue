@@ -6,7 +6,6 @@ import FilterButtin from '@/components/FilterButton.vue'
 import { watch, onMounted, computed, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useTicketStore } from '@/stores/ticket'
-// import { showLoading, hideLoading } from '@/plugins/loading-overlay'
 const isLoading = ref(false)
 const router = useRouter()
 const route = useRoute()

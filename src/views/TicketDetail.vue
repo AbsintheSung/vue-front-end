@@ -11,6 +11,7 @@ const route = useRoute()
 const tichetId = route.params.ticketId // 獲取路由的id ( 發送獲取資料api需要此id資訊 )
 const baseURL = import.meta.env.VITE_APP_API_URL
 const apiName = import.meta.env.VITE_APP_API_NAME
+const isLoading = ref(false)
 const ticketData = ref({}) // 門票資料，一開始為空，從遠端獲取資料後會存到此處
 const quenity = ref(1) // 數量資料
 const imgUrlData = computed(() => {
@@ -24,6 +25,7 @@ const tickStore = useTicketStore()
 //遠端獲取單一門票資料
 const getTicketInfo = async (tichetId) => {
   try {
+    isLoading.value = true
     const response = await axios(`${baseURL}/v2/api/${apiName}/product/${tichetId}`)
     if (response.status === 200) {
       ticketData.value = response.data.product
@@ -31,6 +33,8 @@ const getTicketInfo = async (tichetId) => {
     }
   } catch (error) {
     console.log(error)
+  } finally {
+    isLoading.value = false
   }
 }
 
@@ -61,7 +65,9 @@ const handleTickInfo = async () => {
       qty: quenity.value
     }
   }
+  isLoading.value = true
   await cartStore.fetchAddCart(dataInfo)
+  isLoading.value = false
   console.log('顯示彈窗，確認是否繼續購物跳轉product頁面或是購物車明細頁面')
   // try {
   //   const response = await axios.post(`${baseURL}/v2/api/${apiName}/cart`, dataInfo)
@@ -75,17 +81,22 @@ const handleTickInfo = async () => {
   // }
 }
 onMounted(async () => {
+  isLoading.value = true
   await getTicketInfo(tichetId)
+  isLoading.value = false
 })
 watch(
   () => route.params.ticketId,
   async (newId) => {
+    isLoading.value = true
     await getTicketInfo(newId)
+    isLoading.value = false
   }
 )
 </script>
 <template>
   <!-- <main class="container"> -->
+  <LoadingComponent :active="isLoading" />
   <section class="grid grid-cols-1 gap-2 md:grid-cols-6 md:gap-6">
     <div class="col-span-1 border-2 border-black p-3 md:col-span-5 md:p-6">
       <img class="h-full max-h-[500px] w-full object-cover" :src="ticketData.imageUrl" />
