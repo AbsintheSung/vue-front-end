@@ -1,13 +1,18 @@
 <script setup>
-import { Form, Field, ErrorMessage } from 'vee-validate'
+import { Form } from 'vee-validate'
 import { userSchema } from '@/plugins/vee-vailbate.config'
+import 'element-plus/es/components/message/style/css'
+import { ElMessage } from 'element-plus'
 import { ref } from 'vue'
 import axios from 'axios'
 import imgIcon from '@/assets/images/sparkler.png'
 import FormInput from './FormInput.vue'
+import { useRouter } from 'vue-router'
 const baseURL = import.meta.env.VITE_APP_API_URL
 const apiName = import.meta.env.VITE_APP_API_NAME
 const schema = userSchema
+const isLoading = ref(false)
+const router = useRouter()
 const initUserInput = {
   name: '',
   email: '',
@@ -43,19 +48,31 @@ const fetchUserDate = async (validate, resetForm) => {
     }
   }
   try {
+    isLoading.value = true
     const response = await axios.post(`${baseURL}/v2/api/${apiName}/order`, orderData)
     console.log(response)
     if (response.status === 200) {
       resetForm()
       userInput.value = { ...initUserInput } //初始化
-      console.log('添加成功')
+      successMes(response.data.message)
+      router.push(`/orderpay/${response.data.orderId}`)
+      // console.log('添加成功')
     }
   } catch (error) {
     console.log(error)
+  } finally {
+    isLoading.value = false
   }
+}
+const successMes = (mes = '添加成功') => {
+  ElMessage({
+    message: mes,
+    type: 'success'
+  })
 }
 </script>
 <template>
+  <LoadingComponent :active="isLoading" />
   <div class="pb-6 pt-8">
     <img class="mx-auto" :src="imgIcon" />
     <h2 class="text-center font-noto text-2xl font-bold">聯絡人資訊</h2>
