@@ -5,6 +5,8 @@ import { useRoute } from 'vue-router'
 import imgIcon from '@/assets/images/sparkler.png'
 import OrderTable from '@/components/order/OrderTable.vue'
 import OrderUserInfo from '@/components/order/OrderUserInfo.vue'
+import 'element-plus/es/components/message/style/css'
+import { ElMessage } from 'element-plus'
 const baseURL = import.meta.env.VITE_APP_API_URL
 const apiName = import.meta.env.VITE_APP_API_NAME
 const router = useRoute()
@@ -47,6 +49,7 @@ const creatPay = async () => {
     const response = await axios.post(`${baseURL}/v2/api/${apiName}/pay/${orderId}`)
     if (response.status === 200) {
       await getOneOrder()
+      successMes(response.data.message)
     }
   } catch (error) {
     console.log(error)
@@ -58,6 +61,12 @@ const creatPay = async () => {
 onMounted(() => {
   getOneOrder()
 })
+const successMes = (mes = '添加成功') => {
+  ElMessage({
+    message: mes,
+    type: 'success'
+  })
+}
 </script>
 <template>
   <LoadingComponent :active="isLoading" />
