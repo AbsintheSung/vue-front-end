@@ -5,11 +5,14 @@ import { useRoute } from 'vue-router'
 import imgIcon from '@/assets/images/sparkler.png'
 import OrderTable from '@/components/order/OrderTable.vue'
 import OrderUserInfo from '@/components/order/OrderUserInfo.vue'
+import 'element-plus/es/components/message/style/css'
+import { ElMessage } from 'element-plus'
 const baseURL = import.meta.env.VITE_APP_API_URL
 const apiName = import.meta.env.VITE_APP_API_NAME
 const router = useRoute()
 const orderId = router.params.orderId
 const orderData = ref({})
+const isLoading = ref(false)
 const getOrderList = computed(() => {
   return orderData.value.products
 })
@@ -28,25 +31,45 @@ const getPrice = computed(() => {
 })
 const isOrderPaid = computed(() => orderData.value.is_paid)
 const getOneOrder = async () => {
-  const response = await axios(`${baseURL}/v2/api/${apiName}/order/${orderId}`)
-  console.log(response)
-  orderData.value = response.data.order
+  try {
+    isLoading.value = true
+    const response = await axios(`${baseURL}/v2/api/${apiName}/order/${orderId}`)
+    console.log(response)
+    orderData.value = response.data.order
+  } catch (error) {
+    console.log(error)
+  } finally {
+    isLoading.value = false
+  }
 }
 
 const creatPay = async () => {
   try {
+    isLoading.value = true
     const response = await axios.post(`${baseURL}/v2/api/${apiName}/pay/${orderId}`)
-    console.log(response)
+    if (response.status === 200) {
+      await getOneOrder()
+      successMes(response.data.message)
+    }
   } catch (error) {
     console.log(error)
+  } finally {
+    isLoading.value = false
   }
 }
 
 onMounted(() => {
   getOneOrder()
 })
+const successMes = (mes = '添加成功') => {
+  ElMessage({
+    message: mes,
+    type: 'success'
+  })
+}
 </script>
 <template>
+  <LoadingComponent :active="isLoading" />
   <div class="pb-6 pt-8">
     <img class="mx-auto" :src="imgIcon" />
     <h2 class="text-center font-noto text-2xl font-bold">訂單明細</h2>

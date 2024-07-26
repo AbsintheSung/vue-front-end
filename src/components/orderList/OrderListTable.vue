@@ -11,6 +11,9 @@ const props = defineProps({
 
 //為空陣列為true 非空為false
 const isItemsEmpty = computed(() => Array.isArray(props.items) && props.items.length === 0)
+function totalQuantity(orders) {
+  return Object.values(orders).reduce((total, order) => total + order.qty, 0)
+}
 </script>
 <template>
   <article class="mx-auto w-full font-yeseva md:w-2/3" v-if="!isItemsEmpty">
@@ -31,7 +34,7 @@ const isItemsEmpty = computed(() => Array.isArray(props.items) && props.items.le
       </div>
       <div class="flex">
         <dt class="w-1/3">總件數 :</dt>
-        <dd class="w-2/3 text-center">{{ '1' }} 個</dd>
+        <dd class="w-2/3 text-center">{{ totalQuantity(item.products) }} 個</dd>
       </div>
       <div class="flex">
         <dt class="w-1/3">總金額 :</dt>
