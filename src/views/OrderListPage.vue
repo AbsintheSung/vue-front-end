@@ -10,6 +10,7 @@ const route = useRoute()
 const router = useRouter()
 const page = route.params.pageNum
 const pageInfo = ref({})
+const isLoading = ref(false)
 const isPageInfoEmpty = computed(() => Object.keys(pageInfo.value).length === 0) //判斷是否為空物件
 const orderList = ref([])
 const formatOrderList = computed(() => {
@@ -25,6 +26,7 @@ const formatOrderList = computed(() => {
 })
 const getOrderList = async (page) => {
   try {
+    isLoading.value = true
     const response = await axios(`${baseURL}/v2/api/${apiName}/orders`, {
       params: { page: page }
     })
@@ -32,6 +34,8 @@ const getOrderList = async (page) => {
     pageInfo.value = response.data.pagination
   } catch (error) {
     console.log(error)
+  } finally {
+    isLoading.value = false
   }
 }
 
@@ -60,6 +64,7 @@ onMounted(() => {
 })
 </script>
 <template>
+  <LoadingComponent :active="isLoading" />
   <h2 class="pb-3 pt-1 text-center font-noto text-4xl">訂單明細清單</h2>
   <OrderListTable :orderItem="formatOrderList" />
 
