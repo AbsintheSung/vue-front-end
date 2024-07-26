@@ -99,6 +99,25 @@ const closrModal = () => {
   delProductId.value = ''
   delProductTitle.value = ''
 }
+const postCoupon = async () => {
+  const couponInfo = {
+    data: {
+      code: 'testCode'
+    }
+  }
+  try {
+    isLoading.value = true
+    const response = await axios.post(`${baseURL}/v2/api/${apiName}/coupon`, couponInfo)
+    if (response.status === 200) {
+      await cartStore.fetchCartData()
+    }
+    // console.log(response)
+  } catch (error) {
+    console.log(error)
+  } finally {
+    isLoading.value = false
+  }
+}
 const successMes = (mes = '刪除成功') => {
   ElMessage({
     message: mes,
@@ -129,7 +148,7 @@ onMounted(async () => {
     </div>
 
     <div class="relative basis-full overflow-x-auto shadow-md sm:rounded-lg lg:basis-1/3">
-      <CartOrderTable />
+      <CartOrderTable :getPrice="cartStore.getPriceData" :postCoupon="postCoupon" />
     </div>
   </div>
 </template>

@@ -11,7 +11,7 @@ export const useCartStore = defineStore('cart', () => {
     //getter
     const getCartData = computed(() => cartData.value)
     const getCartLength = computed(() => cartData.value.length)
-    const getPriceData = computed(() => priceData.value.length)
+    const getPriceData = computed(() => priceData.value)
 
     //action
     const fetchCartData = async () => {
