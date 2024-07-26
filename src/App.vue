@@ -3,6 +3,8 @@
 import HeaderView from '@/layouts/HeaderView.vue'
 import FooterView from '@/layouts/FooterView.vue'
 import { RouterView } from 'vue-router'
+
+// import { showLoading, hideLoading } from '@/plugins/loading-overlay'
 // import { useTicketStore } from '@/stores/ticket'
 // const tickStore = useTicketStore()
 
@@ -18,12 +20,17 @@ import { RouterView } from 'vue-router'
 // })
 import { useTicketStore } from '@/stores/ticket'
 import { useCartStore } from '@/stores/cart'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 const tickStore = useTicketStore()
 const cartStore = useCartStore()
-onMounted(() => {
-  tickStore.fetchAllTicketData()
-  cartStore.fetchCartData()
+const isLoading = ref(false)
+onMounted(async () => {
+  // showLoading()
+  isLoading.value = true
+  await tickStore.fetchAllTicketData()
+  await cartStore.fetchCartData()
+  isLoading.value = false
+  // hideLoading()
 })
 </script>
 
@@ -32,6 +39,7 @@ onMounted(() => {
   <main class="container">
     <RouterView />
   </main> -->
+  <LoadingComponent :active="isLoading" />
   <div class="flex min-h-screen flex-col">
     <HeaderView />
     <main class="container flex flex-grow flex-col py-6">
