@@ -27,9 +27,8 @@ setTimeout(() => {
       </tr>
       <tr class="border-b">
         <th scope="row" class="px-6 py-3 font-noto text-xs font-medium uppercase">優惠券</th>
-        <td v-if="getPrice.coupon" class="px-6 py-4 text-end">
+        <td v-if="getPrice.coupon" class="px-6 py-4 text-end text-green-700">
           {{ getPrice.coupon.title }}
-          <span class="text-green-700">折扣:{{ getPrice.coupon.percent }}%</span>
         </td>
         <td v-else class="px-6 py-4 text-end">無使用優惠</td>
         <!-- <td class="px-6 py-4 text-end">LinePay</td> -->
