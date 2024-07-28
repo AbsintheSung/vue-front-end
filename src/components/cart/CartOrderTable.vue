@@ -1,6 +1,6 @@
 <script setup>
 const userCouponValue = defineModel('userInputCoupon', { type: String })
-const props = defineProps({
+defineProps({
   getPrice: {
     type: Object,
     defauit: () => ({})
@@ -14,16 +14,19 @@ const props = defineProps({
     defauit: () => {}
   }
 })
-setTimeout(() => {
-  console.log(props.getPrice.coupon)
-}, 2000)
 </script>
 <template>
   <table class="w-full text-left font-yeseva text-sm rtl:text-right">
     <tbody>
       <tr class="border-b">
         <th scope="row" class="px-6 py-3 font-noto text-xs font-medium uppercase">金額</th>
-        <td class="px-6 py-4 text-end">NT$ {{ getPrice.final_total }}元</td>
+        <td v-if="getPrice.coupon" class="px-6 py-4 text-end">
+          <p class="text-end">
+            <del>NT$ {{ getPrice.total }}</del>
+          </p>
+          <p class="text-end text-2xl">NT$ {{ getPrice.final_total }}</p>
+        </td>
+        <td v-else class="px-6 py-4 text-end">NT$ {{ getPrice.final_total }}元</td>
       </tr>
       <tr class="border-b">
         <th scope="row" class="px-6 py-3 font-noto text-xs font-medium uppercase">優惠券</th>
