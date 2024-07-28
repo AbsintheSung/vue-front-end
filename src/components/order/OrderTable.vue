@@ -30,7 +30,7 @@ defineProps({
           <img :src="itemValue.product.imageUrl" class="object-cover md:w-full" alt="圖片" />
         </td>
         <td scope="row" class="px-6 py-4 font-medium">
-          <router-link :to="`/ticket-detail/${itemValue.product.id}`" class="hover:underline">
+          <router-link :to="`/product-detail/${itemValue.product.id}`" class="hover:underline">
             {{ itemValue.product.title }}</router-link
           >
         </td>

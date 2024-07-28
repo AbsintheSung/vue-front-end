@@ -3,22 +3,22 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 const baseURL = import.meta.env.VITE_APP_API_URL
 const apiName = import.meta.env.VITE_APP_API_NAME
-export const useTicketStore = defineStore('tickets', () => {
+export const useProductStore = defineStore('products', () => {
   //state
-  const ticketData = ref({}) //初始篩選資料
-  const ticketAllData = ref({}) //初始全部資料
+  const productData = ref({}) //初始篩選資料
+  const productAllData = ref({}) //初始全部資料
 
 
   //getter
-  const getTicketAllData = computed(() => ticketAllData.value.products)
-  const getTicketData = computed(() => ticketData.value.products)
-  const getTicketPage = computed(() => ticketData.value.pagination)
+  const getProductAllData = computed(() => productAllData.value.products)
+  const getProductData = computed(() => productData.value.products)
+  const getProductPage = computed(() => productData.value.pagination)
 
   //action
-  const fetchAllTicketData = async () => {
+  const fetchAllProductData = async () => {
     try {
       const response = await axios(`${baseURL}/v2/api/${apiName}/products/all`);
-      ticketAllData.value = response.data;
+      productAllData.value = response.data;
     } catch (error) {
       console.log(error)
     }
@@ -39,7 +39,7 @@ export const useTicketStore = defineStore('tickets', () => {
       });
       console.log(response)
       if (response.status === 200) {
-        ticketData.value = response.data;
+        productData.value = response.data;
       }
       // console.log(response)
     } catch (error) {
@@ -48,5 +48,5 @@ export const useTicketStore = defineStore('tickets', () => {
   }
 
 
-  return { ticketData, getTicketData, getTicketPage, getTicketAllData, fetchPageInfo, fetchAllTicketData }
+  return { productData, getProductData, getProductPage, getProductAllData, fetchPageInfo, fetchAllProductData }
 })

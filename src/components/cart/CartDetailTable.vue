@@ -63,7 +63,11 @@ const handleDelete = (id, title) => {
               alt="圖片"
             />
           </td>
-          <td class="p-2 font-semibold">{{ cartItem.product.title }}</td>
+          <td class="p-2 font-semibold">
+            <router-link class="hover:underline" :to="`/product-detail/${cartItem.product.id}`">{{
+              cartItem.product.title
+            }}</router-link>
+          </td>
           <td class="p-2">
             <div class="flex items-center">
               <button

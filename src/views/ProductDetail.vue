@@ -2,7 +2,7 @@
 import axios from 'axios'
 import ActiveTitle from '@/components/ActiveTitle.vue'
 import CardSwiper from '@/components/CardSwiper.vue'
-import { useTicketStore } from '@/stores/ticket'
+import { useProductStore } from '@/stores/product'
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useCartStore } from '@/stores/cart'
@@ -12,28 +12,28 @@ import { ElMessage } from 'element-plus'
 const cartStore = useCartStore()
 const route = useRoute()
 const router = useRouter()
-const tichetId = route.params.ticketId // 獲取路由的id ( 發送獲取資料api需要此id資訊 )
+const productId = route.params.productId // 獲取路由的id ( 發送獲取資料api需要此id資訊 )
 const baseURL = import.meta.env.VITE_APP_API_URL
 const apiName = import.meta.env.VITE_APP_API_NAME
 const isLoading = ref(false)
-const ticketData = ref({}) // 門票資料，一開始為空，從遠端獲取資料後會存到此處
+const productData = ref({}) // 門票資料，一開始為空，從遠端獲取資料後會存到此處
 const quenity = ref(1) // 數量資料
 const imgUrlData = computed(() => {
-  if (Array.isArray(ticketData.value.imageUrls)) {
-    return [ticketData.value.imageUrl, ...ticketData.value.imageUrls]
+  if (Array.isArray(productData.value.imageUrls)) {
+    return [productData.value.imageUrl, ...productData.value.imageUrls]
   } else {
-    return [ticketData.value.imageUrl]
+    return [productData.value.imageUrl]
   }
 })
-const tickStore = useTicketStore()
+const productStore = useProductStore()
 //遠端獲取單一門票資料
-const getTicketInfo = async (tichetId) => {
+const getProductInfo = async (productId) => {
   try {
     isLoading.value = true
-    const response = await axios(`${baseURL}/v2/api/${apiName}/product/${tichetId}`)
+    const response = await axios(`${baseURL}/v2/api/${apiName}/product/${productId}`)
     if (response.status === 200) {
-      ticketData.value = response.data.product
-      console.log(ticketData.value)
+      productData.value = response.data.product
+      console.log(productData.value)
     }
   } catch (error) {
     console.log(error)
@@ -62,10 +62,10 @@ const userInput = (event) => {
   }
 }
 //點擊購買發送 購買api資訊
-const handleTickInfo = async () => {
+const handleProductInfo = async () => {
   const dataInfo = {
     data: {
-      product_id: tichetId,
+      product_id: productId,
       qty: quenity.value
     }
   }
@@ -73,18 +73,18 @@ const handleTickInfo = async () => {
   const message = await cartStore.fetchAddCart(dataInfo)
   isLoading.value = false
   successMes(message)
-  router.push('/active')
+  router.push('/products')
 }
 onMounted(async () => {
   isLoading.value = true
-  await getTicketInfo(tichetId)
+  await getProductInfo(productId)
   isLoading.value = false
 })
 watch(
-  () => route.params.ticketId,
+  () => route.params.productId,
   async (newId) => {
     isLoading.value = true
-    await getTicketInfo(newId)
+    await getProductInfo(newId)
     isLoading.value = false
   }
 )
@@ -100,7 +100,7 @@ const successMes = (mes = '添加成功') => {
   <LoadingComponent :active="isLoading" />
   <section class="grid grid-cols-1 gap-2 md:grid-cols-6 md:gap-6">
     <div class="col-span-1 border-2 border-black p-3 md:col-span-5 md:p-6">
-      <img class="h-full max-h-[500px] w-full object-cover" :src="ticketData.imageUrl" />
+      <img class="h-full max-h-[500px] w-full object-cover" :src="productData.imageUrl" />
     </div>
     <div class="flex gap-2 font-yeseva md:flex-col md:gap-6">
       <div class="border-2 border-black px-4 py-6 text-2xl md:px-0 md:py-8">
@@ -130,12 +130,12 @@ const successMes = (mes = '添加成功') => {
         </el-carousel>
       </div>
       <div class="w-full md:w-1/2">
-        <h2 class="text-2xl font-bold md:text-4xl">{{ ticketData.title }}</h2>
-        <p class="my-2 font-bold">{{ ticketData.description }}</p>
+        <h2 class="text-2xl font-bold md:text-4xl">{{ productData.title }}</h2>
+        <p class="my-2 font-bold">{{ productData.description }}</p>
         <p class="text-end">
-          <del>NT$ {{ ticketData.origin_price }}</del>
+          <del>NT$ {{ productData.origin_price }}</del>
         </p>
-        <p class="text-end text-2xl">NT$ {{ ticketData.price }}</p>
+        <p class="text-end text-2xl">NT$ {{ productData.price }}</p>
         <div class="my-2 flex items-center gap-2">
           <div class="flex flex-1 items-center">
             <button class="p-2" @click="reduceQuantity">
@@ -152,7 +152,7 @@ const successMes = (mes = '添加成功') => {
             </button>
           </div>
           <div class="flex-1 flex-grow">
-            <button class="w-full bg-black py-2 text-[#FBFF22]" @click="handleTickInfo">
+            <button class="w-full bg-black py-2 text-[#FBFF22]" @click="handleProductInfo">
               購買
             </button>
           </div>
@@ -162,12 +162,12 @@ const successMes = (mes = '添加成功') => {
   </section>
   <section class="font-noto">
     <p class="border-2 border-black p-4 leading-8 md:p-8">
-      {{ ticketData.content }}
+      {{ productData.content }}
     </p>
   </section>
   <section>
     <h2 class="my-6 font-noto text-3xl font-bold">其餘活動</h2>
-    <CardSwiper :allProductData="tickStore.getTicketAllData" />
+    <CardSwiper :allProductData="productStore.getProductAllData" />
   </section>
 
   <!-- </main> -->

@@ -18,16 +18,16 @@ import { RouterView } from 'vue-router'
 // onMounted(async () => {
 //   await tickStore.fetchAllTicketData()
 // })
-import { useTicketStore } from '@/stores/ticket'
+import { useProductStore } from '@/stores/product'
 import { useCartStore } from '@/stores/cart'
 import { onMounted, ref } from 'vue'
-const tickStore = useTicketStore()
+const productStore = useProductStore()
 const cartStore = useCartStore()
 const isLoading = ref(false)
 onMounted(async () => {
   // showLoading()
   isLoading.value = true
-  await tickStore.fetchAllTicketData()
+  await productStore.fetchAllProductData()
   await cartStore.fetchCartData()
   isLoading.value = false
   // hideLoading()

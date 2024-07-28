@@ -8,34 +8,34 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/active',
-    redirect: '/active/1'
+    path: '/products',
+    redirect: '/products/1'
   },
   {
-    path: '/active/:pagenum',
-    name: 'Active',
-    component: () => import('@/views/ActivePgae.vue')
+    path: '/products/:pagenum',
+    name: 'Products',
+    component: () => import('@/views/ProductsPgae.vue')
   },
   {
-    path: '/type-active/:type',
-    name: 'TypeAction',
-    component: () => import('@/views/TypeActivePage.vue'),
+    path: '/type-products/:type',
+    name: 'TypeProducts',
+    component: () => import('@/views/TypeProductsPage.vue'),
     children: [
       {
         path: ':page',
-        name: 'FilterTick',
-        component: () => import('@/views/TypeActiveContent.vue')
+        name: 'FilterProducts',
+        component: () => import('@/views/TypeProductsContent.vue')
       }
     ],
     redirect: (to) => {
       // 當只有類型時，重定向到第一頁
-      return { name: 'FilterTick', params: { ...to.params, page: '1' } }
+      return { name: 'FilterProducts', params: { ...to.params, page: '1' } }
     }
   },
   {
-    path: '/ticket-detail/:ticketId',
-    name: 'TicketDetail',
-    component: () => import('@/views/TicketDetail.vue')
+    path: '/product-detail/:productId',
+    name: 'ProductDetail',
+    component: () => import('@/views/ProductDetail.vue')
   },
   {
     path: '/cart',
