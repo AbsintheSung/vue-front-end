@@ -29,9 +29,22 @@ defineProps({
         <td class="hidden px-6 py-4 md:block">
           <img :src="itemValue.product.imageUrl" class="object-cover md:w-full" alt="圖片" />
         </td>
-        <td scope="row" class="px-6 py-4 font-medium">{{ itemValue.product.title }}</td>
+        <td scope="row" class="px-6 py-4 font-medium">
+          <router-link :to="`/ticket-detail/${itemValue.product.id}`" class="hover:underline">
+            {{ itemValue.product.title }}</router-link
+          >
+        </td>
         <td class="px-6 py-4">{{ itemValue.qty }}</td>
-        <td class="whitespace-nowrap px-6 py-4">NT$ {{ itemValue.total }}</td>
+        <!-- <td class="whitespace-nowrap px-6 py-4">NT$ {{ itemValue.total }}</td> -->
+        <td class="whitespace-nowrap px-6 py-4" v-if="itemValue.coupon">
+          <p>
+            <del>NT$ {{ itemValue.total }}</del>
+          </p>
+          <p class="text-xl font-bold">NT$ {{ itemValue.final_total }}</p>
+        </td>
+        <td v-else class="whitespace-nowrap px-6 py-4 text-xl font-bold">
+          NT$ {{ itemValue.total }}
+        </td>
       </tr>
     </tbody>
     <tfoot>
@@ -39,7 +52,7 @@ defineProps({
         <th scope="row" class="hidden px-6 py-3 text-base md:block"></th>
         <th scope="row" class="px-6 py-3 text-base">總計</th>
         <td class="px-6 py-3">{{ orderPrice.qty }}個</td>
-        <td class="whitespace-nowrap px-6 py-3">NT$ {{ orderPrice.total }}</td>
+        <td class="whitespace-nowrap px-6 py-3 text-xl font-bold">NT$ {{ orderPrice.total }}</td>
       </tr>
     </tfoot>
   </table>

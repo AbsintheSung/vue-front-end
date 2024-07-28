@@ -19,7 +19,11 @@ export const useCartStore = defineStore('cart', () => {
             const response = await axios(`${baseURL}/v2/api/${apiName}/cart`)
             const { final_total: finalTotal, total } = response.data.data
             priceData.value = { final_total: finalTotal, total }
+            if (response.data.data.carts.length > 0 && response.data.data.carts[0].coupon) {
+                priceData.value.coupon = response.data.data.carts[0].coupon
+            }
             cartData.value = response.data.data.carts
+            console.log(cartData.value, priceData.value)
         } catch (error) {
             console.log(error)
         }

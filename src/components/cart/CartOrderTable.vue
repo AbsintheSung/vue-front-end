@@ -20,16 +20,30 @@ defineProps({
     <tbody>
       <tr class="border-b">
         <th scope="row" class="px-6 py-3 font-noto text-xs font-medium uppercase">金額</th>
-        <td class="px-6 py-4 text-end">NT$ {{ getPrice.final_total }}元</td>
+        <td v-if="getPrice.coupon" class="px-6 py-4 text-end">
+          <p class="text-end">
+            <del>NT$ {{ getPrice.total }}</del>
+          </p>
+          <p class="text-end text-2xl">NT$ {{ getPrice.final_total }}</p>
+        </td>
+        <td v-else class="px-6 py-4 text-end">NT$ {{ getPrice.final_total }}元</td>
       </tr>
       <tr class="border-b">
-        <th scope="row" class="px-6 py-3 font-noto text-xs font-medium uppercase">付款方式</th>
-        <td class="px-6 py-4 text-end">LinePay</td>
+        <th scope="row" class="px-6 py-3 font-noto text-xs font-medium uppercase">優惠券</th>
+        <td v-if="getPrice.coupon" class="px-6 py-4 text-end text-green-700">
+          {{ getPrice.coupon.title }}
+        </td>
+        <td v-else class="px-6 py-4 text-end">無使用優惠</td>
+        <!-- <td class="px-6 py-4 text-end">LinePay</td> -->
+        <!-- <td class="px-6 py-4 text-end">無使用優惠</td> -->
       </tr>
     </tbody>
   </table>
   <div class="p-6 font-noto">
     <h3 class="mb-4">套用優惠券</h3>
+    <span class="text-[12px] text-red-600"
+      >注意:套用優惠時，請確認所有商品都在購物車內後，再輸入優惠碼。</span
+    >
     <div class="flex w-full items-stretch">
       <input
         type="text"
