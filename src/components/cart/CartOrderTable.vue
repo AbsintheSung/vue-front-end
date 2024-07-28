@@ -39,6 +39,9 @@ setTimeout(() => {
   </table>
   <div class="p-6 font-noto">
     <h3 class="mb-4">套用優惠券</h3>
+    <span class="text-[12px] text-red-600"
+      >注意:套用優惠時，請確認所有商品都在購物車內後，再輸入優惠碼。</span
+    >
     <div class="flex w-full items-stretch">
       <input
         type="text"
