@@ -10,10 +10,10 @@ defineProps({
   }
 })
 const handleFilter = (filterData) => {
-  router.push(`/type-active/${filterData}`)
+  router.push(`/type-products/${filterData}`)
 }
 const handleAllActive = () => {
-  router.push('/active')
+  router.push('/products')
 }
 </script>
 <template>

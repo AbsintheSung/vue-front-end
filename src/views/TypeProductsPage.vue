@@ -1,24 +1,24 @@
 <script setup>
 import { computed } from 'vue'
-import { useTicketStore } from '@/stores/ticket'
+import { useProductStore } from '@/stores/product'
 import { useRoute } from 'vue-router'
 import ActiveTitle from '@/components/ActiveTitle.vue'
-import FilterButtin from '@/components/FilterButton.vue'
+import FilterButton from '@/components/FilterButton.vue'
 const route = useRoute()
-const tickStore = useTicketStore()
+const productStore = useProductStore()
 const routeType = computed(() => route.params.type)
 
 const getFilterBtnData = computed(() => {
-  if (!tickStore.getTicketAllData || tickStore.getTicketAllData.length === 0) {
+  if (!productStore.getProductAllData || productStore.getProductAllData.length === 0) {
     return []
   }
-  return [...new Set(tickStore.getTicketAllData.map((item) => item.category))]
+  return [...new Set(productStore.getProductAllData.map((item) => item.category))]
 })
 </script>
 <template>
   <!-- <main class="container"> -->
   <ActiveTitle :rightTitle="routeType" />
-  <FilterButtin :getFilterData="getFilterBtnData" />
+  <FilterButton :getFilterData="getFilterBtnData" />
   <router-view></router-view>
   <!-- </main> -->
 </template>

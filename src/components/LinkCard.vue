@@ -2,11 +2,11 @@
 import { ref } from 'vue'
 import TheSvg from '@/components/TheSvg.vue'
 const svgData = ref([
-  { name: 'show', title: '演出', path: '/type-active/演出' },
-  { name: 'fellowship', title: '聯誼', path: '/type-active/聯誼' },
-  { name: 'exhibition', title: '展覽', path: '/type-active/展覽' },
-  { name: 'gourmetfood', title: '美食', path: '/type-active/美食' },
-  { name: 'outdoor', title: '戶外', path: '/type-active/戶外' }
+  { name: 'show', title: '演出', path: '/type-products/演出' },
+  { name: 'fellowship', title: '聯誼', path: '/type-products/聯誼' },
+  { name: 'exhibition', title: '展覽', path: '/type-products/展覽' },
+  { name: 'gourmetfood', title: '美食', path: '/type-products/美食' },
+  { name: 'outdoor', title: '戶外', path: '/type-products/戶外' }
 ])
 </script>
 <template>
@@ -22,7 +22,7 @@ const svgData = ref([
       </router-link>
     </li>
     <li>
-      <router-link to="/active" class="h-full">
+      <router-link to="/products" class="h-full">
         <div
           class="flex h-full w-full items-center justify-center bg-black text-2xl font-black text-yellow-400 hover:text-yellow-200 md:text-4xl"
         >

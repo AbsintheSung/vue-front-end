@@ -57,7 +57,7 @@ const swiperOptions = {
           19 MAY 2023
         </h2>
         <router-link
-          :to="`/ticket-detail/${cardItem.id}`"
+          :to="`/product-detail/${cardItem.id}`"
           class="block transition duration-500 ease-in-out hover:text-yellow-700"
         >
           <img class="mt-3 h-[240px] w-full object-cover" :src="cardItem.imageUrl" alt="活動圖片" />
@@ -69,13 +69,13 @@ const swiperOptions = {
         <div
           class="mt-auto flex items-center justify-between border-y-2 border-black py-2 font-bold md:py-3"
         >
-          <router-link :to="`/type-active/${cardItem.category}`" class="flex hover:underline"
+          <router-link :to="`/type-products/${cardItem.category}`" class="flex hover:underline"
             ><img src="../assets/images/sparkler.png" class="me-2 w-6" />{{
               cardItem.category
             }}</router-link
           >
 
-          <router-link :to="`/ticket-detail/${cardItem.id}`" class="card-hover-pseudo block"
+          <router-link :to="`/product-detail/${cardItem.id}`" class="card-hover-pseudo block"
             >開賣中<FontAwesomeIcon :icon="['fas', 'angles-right']"
           /></router-link>
         </div>

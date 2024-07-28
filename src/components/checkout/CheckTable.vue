@@ -38,7 +38,7 @@ setTimeout(() => {
       <tbody>
         <tr class="border-b border-b-slate-700" v-for="item in cartData" :key="item.id">
           <th scope="row" class="px-6 py-4 font-medium">
-            <router-link class="hover:underline" :to="`/ticket-detail/${item.product.id}`">{{
+            <router-link class="hover:underline" :to="`/product-detail/${item.product.id}`">{{
               item.product.title
             }}</router-link>
           </th>
