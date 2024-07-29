@@ -13,7 +13,9 @@ const pageAndType = computed(() => ({
   page: route.params.page,
   type: route.params.type
 }))
-
+const hasProducts = computed(() => {
+  return productStore.getProductData && productStore.getProductData.length !== 0
+})
 //  route.params 多層物件，改監聽 處理好的 computed
 watch(
   pageAndType,
@@ -39,12 +41,23 @@ const handlePages = async (pageNum) => {
 <template>
   <!-- <main class="container flex h-full flex-col"> -->
   <LoadingComponent :active="isLoading" />
-  <ul class="grid grid-cols-1 gap-6 py-2 font-noto sm:grid-cols-2 md:grid-cols-3">
-    <ProductCard v-for="item in productStore.getProductData" :key="item.id" :cardItem="item" />
-  </ul>
-  <div class="mt-auto flex py-6">
-    <PaginatePage :pageInfo="productStore.getProductPage" @sendPageNum="handlePages"></PaginatePage>
-  </div>
+  <template v-if="hasProducts">
+    <ul class="grid grid-cols-1 gap-6 py-2 font-noto sm:grid-cols-2 md:grid-cols-3">
+      <ProductCard v-for="item in productStore.getProductData" :key="item.id" :cardItem="item" />
+    </ul>
+    <div class="mt-auto flex py-6">
+      <PaginatePage
+        :pageInfo="productStore.getProductPage"
+        @sendPageNum="handlePages"
+      ></PaginatePage>
+    </div>
+  </template>
+  <template v-else>
+    <div>
+      <h2>目前無相關產品</h2>
+    </div>
+  </template>
+
   <!-- </main> -->
 </template>
 <style scoped></style>
