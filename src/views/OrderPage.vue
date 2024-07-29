@@ -2,9 +2,10 @@
 import axios from 'axios'
 import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import imgIcon from '@/assets/images/sparkler.png'
+// import imgIcon from '@/assets/images/sparkler.png'
 import OrderTable from '@/components/order/OrderTable.vue'
 import OrderUserInfo from '@/components/order/OrderUserInfo.vue'
+import PayLine from '@/components/PayLine.vue'
 import 'element-plus/es/components/message/style/css'
 import { ElMessage } from 'element-plus'
 const baseURL = import.meta.env.VITE_APP_API_URL
@@ -69,8 +70,13 @@ const successMes = (mes = '添加成功') => {
 </script>
 <template>
   <LoadingComponent :active="isLoading" />
+  <PayLine :isOrderConfirm="true" :isPayConfirm="true" :isPayComplete="isOrderPaid" />
+  <div class="my-6 text-center" v-if="isOrderPaid">
+    <FontAwesomeIcon class="text-2xl" :icon="['fas', 'circle-check']" />
+    <h2 class="text-center font-noto text-3xl font-bold">訂購成功</h2>
+  </div>
   <div class="pb-6 pt-8">
-    <img class="mx-auto" :src="imgIcon" />
+    <!-- <img class="mx-auto" :src="imgIcon" /> -->
     <h2 class="text-center font-noto text-2xl font-bold">訂單明細</h2>
   </div>
   <OrderTable :orderList="getOrderList" :orderPrice="getPrice" />
