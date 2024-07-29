@@ -1,12 +1,19 @@
 <script setup>
 import { ref } from 'vue'
 import TheSvg from '@/components/TheSvg.vue'
+// const svgData = ref([
+//   { name: 'show', title: '演出', path: '/type-products/演出' },
+//   { name: 'fellowship', title: '聯誼', path: '/type-products/聯誼' },
+//   { name: 'exhibition', title: '展覽', path: '/type-products/展覽' },
+//   { name: 'gourmetfood', title: '美食', path: '/type-products/美食' },
+//   { name: 'outdoor', title: '戶外', path: '/type-products/戶外' }
+// ])
 const svgData = ref([
-  { name: 'show', title: '演出', path: '/type-products/演出' },
-  { name: 'fellowship', title: '聯誼', path: '/type-products/聯誼' },
-  { name: 'exhibition', title: '展覽', path: '/type-products/展覽' },
-  { name: 'gourmetfood', title: '美食', path: '/type-products/美食' },
-  { name: 'outdoor', title: '戶外', path: '/type-products/戶外' }
+  { name: 'LEGO', title: 'LEGO', path: '/type-products/LEGO' },
+  { name: 'GSC', title: 'GSC', path: '/type-products/GSC' },
+  { name: 'MageHouse', title: 'MageHouse', path: '/type-products/MageHouse' },
+  { name: 'FuRyu', title: 'FuRyu', path: '/type-products/FuRyu' },
+  { name: 'ANIPLEX', title: 'ANIPLEX+', path: '/type-products/ANIPLEX' }
 ])
 </script>
 <template>
@@ -26,7 +33,7 @@ const svgData = ref([
         <div
           class="flex h-full w-full items-center justify-center bg-black text-2xl font-black text-yellow-400 hover:text-yellow-200 md:text-4xl"
         >
-          探索<br />更多
+          更多<br />商品
         </div>
       </router-link>
     </li>

@@ -1,5 +1,6 @@
 <script setup>
-import sprite from '@/assets/svg/icon.svg'
+// import sprite from '@/assets/svg/icon.svg'
+import sprite from '@/assets/svg/icon_figure.svg'
 const props = defineProps({
   svgIcon: {
     title: String,
