@@ -11,7 +11,7 @@ import TheSvg from '@/components/TheSvg.vue'
 const svgData = ref([
   { name: 'LEGO', title: 'LEGO', path: '/type-products/LEGO' },
   { name: 'GSC', title: 'GSC', path: '/type-products/GSC' },
-  { name: 'mageHouse', title: 'MageHouse', path: '/type-products/mageHouse' },
+  { name: 'MageHouse', title: 'MageHouse', path: '/type-products/MageHouse' },
   { name: 'FuRyu', title: 'FuRyu', path: '/type-products/FuRyu' },
   { name: 'ANIPLEX', title: 'ANIPLEX+', path: '/type-products/ANIPLEX' }
 ])
