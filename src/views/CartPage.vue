@@ -54,7 +54,7 @@ const delOneProduct = async () => {
     const response = await axios.delete(`${baseURL}/v2/api/${apiName}/cart/${delProductId.value}`)
     if (response.status === 200) {
       await getCartsData()
-      successMes(response.data.message)
+      responseMes(response.data.message)
     }
   } catch (error) {
     console.log(error)
@@ -71,7 +71,7 @@ const delAllProduct = async () => {
     const response = await axios.delete(`${baseURL}/v2/api/${apiName}/carts`)
     if (response.status === 200) {
       await getCartsData()
-      successMes(response.data.message)
+      responseMes(response.data.message)
     }
   } catch (error) {
     console.log(error)
@@ -99,11 +99,12 @@ const fetchCoupon = async () => {
     const response = await axios.post(`${baseURL}/v2/api/${apiName}/coupon`, couponInfo)
     if (response.status === 200) {
       await cartStore.fetchCartData()
-      successMes(response.data.message)
+      responseMes(response.data.message)
       userInputCoupon.value = ''
     }
   } catch (error) {
-    console.log(error)
+    responseMes(error.response.data.message, 'error')
+    // console.log(error.response.data.message)
   } finally {
     isLoading.value = false
   }
@@ -111,10 +112,10 @@ const fetchCoupon = async () => {
 const confirm = () => {
   router.push('/checkoutform')
 }
-const successMes = (mes = '刪除成功') => {
+const responseMes = (mes = '刪除成功', type = 'success') => {
   ElMessage({
     message: mes,
-    type: 'success'
+    type: type
   })
 }
 onMounted(async () => {

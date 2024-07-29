@@ -18,6 +18,8 @@ const apiName = import.meta.env.VITE_APP_API_NAME
 const isLoading = ref(false)
 const productData = ref({}) // 產品資料，一開始為空，從遠端獲取資料後會存到此處
 const quenity = ref(1) // 數量資料
+const getOriginPrice = computed(() => productData.value.origin_price * quenity.value)
+const getPrice = computed(() => productData.value.price * quenity.value)
 const imgUrlData = computed(() => {
   if (Array.isArray(productData.value.imagesUrl)) {
     return [productData.value.imageUrl, ...productData.value.imagesUrl]
@@ -132,9 +134,11 @@ const successMes = (mes = '添加成功') => {
         <h2 class="text-2xl font-bold md:text-4xl">{{ productData.title }}</h2>
         <p class="my-2 font-bold">{{ productData.description }}</p>
         <p class="text-end">
-          <del>NT$ {{ productData.origin_price }}</del>
+          <!-- <del>NT$ {{ productData.origin_price }}</del> -->
+          <del>NT$ {{ getOriginPrice }}</del>
         </p>
-        <p class="text-end text-2xl">NT$ {{ productData.price }}</p>
+        <!-- <p class="text-end text-2xl">NT$ {{ productData.price }}</p> -->
+        <p class="text-end text-2xl">NT$ {{ getPrice }}</p>
         <div class="my-4 flex items-center gap-2">
           <div class="flex flex-1 items-center">
             <button class="p-2" @click="reduceQuantity">
