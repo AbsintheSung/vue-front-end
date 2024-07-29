@@ -87,51 +87,6 @@ const successMes = (mes = '添加成功') => {
     <template v-for="inputItem in inputInfo" :key="inputItem.id">
       <FormInput :inputInfo="inputItem" v-model:userInput="userInput[inputItem.id]" />
     </template>
-
-    <!-- <div class="mb-5">
-      <label for="useremail" class="mb-2 block text-sm font-medium">電子信箱-Email</label>
-      <Field
-        type="text"
-        id="useremail"
-        name="useremail"
-        class="block w-full rounded-lg border-2 border-black bg-custom-bg-1 p-2.5 text-sm"
-        placeholder="Bonnie Green"
-      />
-      <ErrorMessage name="useremail" class="mt-2 text-sm font-bold text-red-600" />
-    </div>
-    <div class="mb-5">
-      <label for="username" class="mb-2 block text-sm font-medium">姓名</label>
-      <Field
-        type="text"
-        id="username"
-        name="username"
-        class="block w-full rounded-lg border-2 border-black bg-custom-bg-1 p-2.5 text-sm"
-        placeholder="Bonnie Green"
-      />
-      <ErrorMessage name="username" class="mt-2 text-sm font-bold text-red-600" />
-    </div>
-    <div class="mb-5">
-      <label for="userphone" class="mb-2 block text-sm font-medium">電話</label>
-      <Field
-        type="tel"
-        id="userphone"
-        name="userphone"
-        class="block w-full rounded-lg border-2 border-black bg-custom-bg-1 p-2.5 text-sm"
-        placeholder="Bonnie Green"
-      />
-      <ErrorMessage name="userphone" class="mt-2 text-sm font-bold text-red-600" />
-    </div>
-    <div class="mb-5">
-      <label for="useraddress" class="mb-2 block text-sm font-medium">地址</label>
-      <Field
-        type="text"
-        id="useraddress"
-        name="useraddress"
-        class="block w-full rounded-lg border-2 border-black bg-custom-bg-1 p-2.5 text-sm"
-        placeholder="Bonnie Green"
-      />
-      <ErrorMessage name="userphone" class="mt-2 text-sm font-bold text-red-600" />
-    </div> -->
     <div class="mb-5">
       <label for="usermessage" class="mb-2 block text-sm font-medium">留言</label>
       <input

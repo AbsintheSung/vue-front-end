@@ -16,7 +16,7 @@ const productId = route.params.productId // 獲取路由的id ( 發送獲取資�
 const baseURL = import.meta.env.VITE_APP_API_URL
 const apiName = import.meta.env.VITE_APP_API_NAME
 const isLoading = ref(false)
-const productData = ref({}) // 門票資料，一開始為空，從遠端獲取資料後會存到此處
+const productData = ref({}) // 產品資料，一開始為空，從遠端獲取資料後會存到此處
 const quenity = ref(1) // 數量資料
 const imgUrlData = computed(() => {
   if (Array.isArray(productData.value.imagesUrl)) {
@@ -26,7 +26,7 @@ const imgUrlData = computed(() => {
   }
 })
 const productStore = useProductStore()
-//遠端獲取單一門票資料
+//遠端獲取單一產品資料
 const getProductInfo = async (productId) => {
   try {
     isLoading.value = true

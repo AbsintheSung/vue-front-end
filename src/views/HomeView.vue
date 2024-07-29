@@ -3,14 +3,9 @@ import LinkCard from '@/components/LinkCard.vue'
 import ActiveTitle from '@/components/ActiveTitle.vue'
 import TickCard from '@/components/ProductCard.vue'
 import { useProductStore } from '@/stores/product'
-// import { onMounted } from 'vue'
 const productStore = useProductStore()
-// onMounted(() => {
-//   tickStore.fetchAllTicketData()
-// })
 </script>
 <template>
-  <!-- <main class="container"> -->
   <section class="py-6 font-noto">
     <LinkCard />
   </section>
@@ -26,6 +21,4 @@ const productStore = useProductStore()
       <TickCard v-for="item in productStore.getFilterProduct" :key="item.id" :cardItem="item" />
     </ul>
   </section>
-
-  <!-- </main> -->
 </template>

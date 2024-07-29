@@ -37,25 +37,14 @@ export const useProductStore = defineStore('products', () => {
       console.log(error)
     }
   }
-  // const fetchTicketData = async () => {
-  //   try {
-  //     const response = await axios(`${baseURL}/v2/api/${apiName}/products`);
-  //     ticketData.value = response.data;
-  //     console.log(response)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
   const fetchPageInfo = async (page = '', category = '') => {
     try {
       const response = await axios(`${baseURL}/v2/api/${apiName}/products`, {
         params: { page: page.toString(), category: category }
       })
-      console.log(response)
       if (response.status === 200) {
         productData.value = response.data
       }
-      // console.log(response)
     } catch (error) {
       console.log(error)
     }
