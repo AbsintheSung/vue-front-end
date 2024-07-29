@@ -19,8 +19,8 @@ const isLoading = ref(false)
 const productData = ref({}) // 門票資料，一開始為空，從遠端獲取資料後會存到此處
 const quenity = ref(1) // 數量資料
 const imgUrlData = computed(() => {
-  if (Array.isArray(productData.value.imageUrls)) {
-    return [productData.value.imageUrl, ...productData.value.imageUrls]
+  if (Array.isArray(productData.value.imagesUrl)) {
+    return [productData.value.imageUrl, ...productData.value.imagesUrl]
   } else {
     return [productData.value.imageUrl]
   }
