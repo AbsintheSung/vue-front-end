@@ -8,17 +8,31 @@ export const useProductStore = defineStore('products', () => {
   const productData = ref({}) //初始篩選資料
   const productAllData = ref({}) //初始全部資料
 
-
   //getter
   const getProductAllData = computed(() => productAllData.value.products)
   const getProductData = computed(() => productData.value.products)
   const getProductPage = computed(() => productData.value.pagination)
+  const getFilterProduct = computed(() => {
+    if (Object.keys(productAllData.value).length === 0) return []
+    const array = productAllData.value.products
+    const result = []
+    const len = array.length
+    const taken = new Set()
+    while (result.length < 6 && taken.size < len) {
+      const randomIndex = Math.floor(Math.random() * len)
+      if (!taken.has(randomIndex)) {
+        result.push(array[randomIndex])
+        taken.add(randomIndex)
+      }
+    }
+    return result
+  })
 
   //action
   const fetchAllProductData = async () => {
     try {
-      const response = await axios(`${baseURL}/v2/api/${apiName}/products/all`);
-      productAllData.value = response.data;
+      const response = await axios(`${baseURL}/v2/api/${apiName}/products/all`)
+      productAllData.value = response.data
     } catch (error) {
       console.log(error)
     }
@@ -36,10 +50,10 @@ export const useProductStore = defineStore('products', () => {
     try {
       const response = await axios(`${baseURL}/v2/api/${apiName}/products`, {
         params: { page: page.toString(), category: category }
-      });
+      })
       console.log(response)
       if (response.status === 200) {
-        productData.value = response.data;
+        productData.value = response.data
       }
       // console.log(response)
     } catch (error) {
@@ -47,6 +61,13 @@ export const useProductStore = defineStore('products', () => {
     }
   }
 
-
-  return { productData, getProductData, getProductPage, getProductAllData, fetchPageInfo, fetchAllProductData }
+  return {
+    productData,
+    getProductData,
+    getProductPage,
+    getProductAllData,
+    getFilterProduct,
+    fetchPageInfo,
+    fetchAllProductData
+  }
 })
