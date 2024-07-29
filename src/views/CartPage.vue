@@ -54,7 +54,7 @@ const delOneProduct = async () => {
     const response = await axios.delete(`${baseURL}/v2/api/${apiName}/cart/${delProductId.value}`)
     if (response.status === 200) {
       await getCartsData()
-      successMes(response.data.message)
+      responseMes(response.data.message)
     }
   } catch (error) {
     console.log(error)
@@ -71,7 +71,7 @@ const delAllProduct = async () => {
     const response = await axios.delete(`${baseURL}/v2/api/${apiName}/carts`)
     if (response.status === 200) {
       await getCartsData()
-      successMes(response.data.message)
+      responseMes(response.data.message)
     }
   } catch (error) {
     console.log(error)
