@@ -11,9 +11,9 @@ const props = defineProps({
 <template>
   <li v-if="Object.keys(props.cardItem).length > 0">
     <div class="flex h-full flex-col">
-      <h2 class="border-b-2 border-black pb-3 font-yeseva text-[32px] font-normal md:text-4xl">
+      <!-- <h2 class="border-b-2 border-black pb-3 font-yeseva text-[32px] font-normal md:text-4xl">
         19 MAY 2023
-      </h2>
+      </h2> -->
       <router-link
         :to="`/product-detail/${cardItem.id}`"
         class="block transition duration-500 ease-in-out hover:text-yellow-700"

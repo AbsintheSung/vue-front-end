@@ -98,7 +98,7 @@ const successMes = (mes = '添加成功') => {
 <template>
   <!-- <main class="container"> -->
   <LoadingComponent :active="isLoading" />
-  <section class="grid grid-cols-1 gap-2 md:grid-cols-6 md:gap-6">
+  <!-- <section class="grid grid-cols-1 gap-2 md:grid-cols-6 md:gap-6">
     <div class="col-span-1 border-2 border-black p-3 md:col-span-5 md:p-6">
       <img class="h-full max-h-[500px] w-full object-cover" :src="productData.imageUrl" />
     </div>
@@ -118,8 +118,8 @@ const successMes = (mes = '添加成功') => {
         </div>
       </div>
     </div>
-  </section>
-  <ActiveTitle :leftTitle="'TICKET'" :rightTitle="'購票資訊'" />
+  </section> -->
+  <ActiveTitle :leftTitle="'Product'" :rightTitle="'購買資訊'" />
   <section class="my-6 font-noto">
     <div class="flex flex-wrap gap-6 md:flex-nowrap">
       <div class="w-full md:w-1/2">
@@ -166,7 +166,7 @@ const successMes = (mes = '添加成功') => {
     </p>
   </section>
   <section>
-    <h2 class="my-6 font-noto text-3xl font-bold">其餘活動</h2>
+    <h2 class="my-6 font-noto text-3xl font-bold">其餘商品</h2>
     <CardSwiper :allProductData="productStore.getProductAllData" />
   </section>
 

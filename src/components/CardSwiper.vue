@@ -53,9 +53,9 @@ const swiperOptions = {
   <template v-if="allProductData.length != 0">
     <swiper :loop="true" v-bind="swiperOptions">
       <swiper-slide v-for="cardItem in allProductData" :key="cardItem.id">
-        <h2 class="border-b-2 border-black pb-3 font-yeseva text-[32px] font-normal md:text-4xl">
+        <!-- <h2 class="border-b-2 border-black pb-3 font-yeseva text-[32px] font-normal md:text-4xl">
           19 MAY 2023
-        </h2>
+        </h2> -->
         <router-link
           :to="`/product-detail/${cardItem.id}`"
           class="block transition duration-500 ease-in-out hover:text-yellow-700"
