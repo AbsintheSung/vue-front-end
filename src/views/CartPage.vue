@@ -10,30 +10,16 @@ import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
 const baseURL = import.meta.env.VITE_APP_API_URL
 const apiName = import.meta.env.VITE_APP_API_NAME
-// const cartData = ref([])
-// const priceData = ref({})
 const isLoading = ref(false)
 const delProductId = ref('') //存放要刪除單品的id
 const delProductTitle = ref('') //存放要刪除單品的title
 const modalShow = ref(false) //用來開啟 dialog的設定
 const cartStore = useCartStore()
 const router = useRouter()
-// const cartDataComputed = computed(() => cartData.value)
 const getCartsData = async () => {
   isLoading.value = true
   await cartStore.fetchCartData()
   isLoading.value = false
-  // try {
-  //   isLoading.value = true
-  //   const response = await axios(`${baseURL}/v2/api/${apiName}/cart`)
-  //   const { final_total: finalTotal, total } = response.data.data
-  //   priceData.value = { final_total: finalTotal, total }
-  //   cartData.value = response.data.data.carts
-  // } catch (error) {
-  //   console.log(error)
-  // } finally {
-  //   isLoading.value = false
-  // }
 }
 const handleModifyQty = async (product) => {
   try {
