@@ -52,7 +52,6 @@ const fetchUserDate = async (validate, resetForm) => {
   try {
     isLoading.value = true
     const response = await axios.post(`${baseURL}/v2/api/${apiName}/order`, orderData)
-    console.log(response)
     if (response.status === 200) {
       resetForm()
       userInput.value = { ...initUserInput } //

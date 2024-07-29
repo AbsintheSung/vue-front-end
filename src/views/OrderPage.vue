@@ -34,7 +34,6 @@ const getOneOrder = async () => {
   try {
     isLoading.value = true
     const response = await axios(`${baseURL}/v2/api/${apiName}/order/${orderId}`)
-    console.log(response)
     orderData.value = response.data.order
   } catch (error) {
     console.log(error)

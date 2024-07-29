@@ -116,7 +116,6 @@ const fetchCoupon = async () => {
       successMes(response.data.message)
       userInputCoupon.value = ''
     }
-    // console.log(response)
   } catch (error) {
     console.log(error)
   } finally {

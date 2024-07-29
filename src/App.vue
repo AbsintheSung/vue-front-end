@@ -1,23 +1,7 @@
 <script setup>
-// import { watch, onMounted } from 'vue'
 import HeaderView from '@/layouts/HeaderView.vue'
 import FooterView from '@/layouts/FooterView.vue'
 import { RouterView } from 'vue-router'
-
-// import { showLoading, hideLoading } from '@/plugins/loading-overlay'
-// import { useTicketStore } from '@/stores/ticket'
-// const tickStore = useTicketStore()
-
-// watch(
-//   () => tickStore.ticketData,
-//   (dataState) => {
-//     const isEmpty = Object.keys(dataState).length === 0
-//     isEmpty ? tickStore.fetchAllTicketData() : null
-//   }
-// )
-// onMounted(async () => {
-//   await tickStore.fetchAllTicketData()
-// })
 import { useProductStore } from '@/stores/product'
 import { useCartStore } from '@/stores/cart'
 import { onMounted, ref } from 'vue'
@@ -25,20 +9,14 @@ const productStore = useProductStore()
 const cartStore = useCartStore()
 const isLoading = ref(false)
 onMounted(async () => {
-  // showLoading()
   isLoading.value = true
   await productStore.fetchAllProductData()
   await cartStore.fetchCartData()
   isLoading.value = false
-  // hideLoading()
 })
 </script>
 
 <template>
-  <!-- <HeaderView />
-  <main class="container">
-    <RouterView />
-  </main> -->
   <LoadingComponent :active="isLoading" />
   <div class="flex min-h-screen flex-col">
     <HeaderView />

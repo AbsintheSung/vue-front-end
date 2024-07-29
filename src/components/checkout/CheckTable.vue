@@ -21,9 +21,6 @@ const productQty = computed(() => {
     return props.cartData.reduce((total, item) => total + item.qty, 0)
   }
 })
-setTimeout(() => {
-  console.log(props.cartData)
-}, 3000)
 </script>
 <template>
   <div class="overflow-x-auto">

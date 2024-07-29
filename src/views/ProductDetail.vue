@@ -33,7 +33,6 @@ const getProductInfo = async (productId) => {
     const response = await axios(`${baseURL}/v2/api/${apiName}/product/${productId}`)
     if (response.status === 200) {
       productData.value = response.data.product
-      console.log(productData.value)
     }
   } catch (error) {
     console.log(error)
