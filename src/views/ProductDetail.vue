@@ -125,7 +125,7 @@ const successMes = (mes = '添加成功') => {
       <div class="w-full md:w-1/2">
         <el-carousel indicator-position="none">
           <el-carousel-item v-for="item in imgUrlData" :key="item">
-            <img :src="item" class="h-full w-full" />
+            <img :src="item" class="h-full w-full object-contain" />
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -136,7 +136,7 @@ const successMes = (mes = '添加成功') => {
           <del>NT$ {{ productData.origin_price }}</del>
         </p>
         <p class="text-end text-2xl">NT$ {{ productData.price }}</p>
-        <div class="my-2 flex items-center gap-2">
+        <div class="my-4 flex items-center gap-2">
           <div class="flex flex-1 items-center">
             <button class="p-2" @click="reduceQuantity">
               <FontAwesomeIcon :icon="['fas', 'minus']" />
