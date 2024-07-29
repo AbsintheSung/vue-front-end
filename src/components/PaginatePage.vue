@@ -38,7 +38,6 @@ const emits = defineEmits({
 })
 
 const onClickHandler = (page) => {
-  //   console.log(page)
   emits('sendPageNum', page)
 }
 </script>
