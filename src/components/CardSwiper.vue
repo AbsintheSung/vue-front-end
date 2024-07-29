@@ -60,7 +60,11 @@ const swiperOptions = {
           :to="`/product-detail/${cardItem.id}`"
           class="block transition duration-500 ease-in-out hover:text-yellow-700"
         >
-          <img class="mt-3 h-[240px] w-full object-cover" :src="cardItem.imageUrl" alt="活動圖片" />
+          <img
+            class="mt-3 h-[240px] w-full object-contain"
+            :src="cardItem.imageUrl"
+            alt="活動圖片"
+          />
           <h3 class="my-3 text-lg font-bold md:text-2xl">{{ cardItem.title }}</h3>
           <p class="mb-4">
             {{ cardItem.description }}

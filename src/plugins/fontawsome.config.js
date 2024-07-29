@@ -12,7 +12,7 @@ import {
   faShoppingCart,
   faPaperPlane,
   faCircleCheck,
+  faRobot
 } from '@fortawesome/free-solid-svg-icons'
-library.add(faBars, faAnglesRight, faMinus, faPlus, faTimes, faMagnifyingGlass, faBarsProgress, faClipboard, faShoppingCart, faPaperPlane, faCircleCheck)
+library.add(faBars, faAnglesRight, faMinus, faPlus, faTimes, faMagnifyingGlass, faBarsProgress, faClipboard, faShoppingCart, faPaperPlane, faCircleCheck, faRobot)
 export { FontAwesomeIcon }
-console.log(faCircleCheck)
