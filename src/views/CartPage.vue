@@ -110,7 +110,11 @@ const fetchCoupon = async () => {
   }
 }
 const confirm = () => {
-  router.push('/checkoutform')
+  if (cartStore.getCartLength !== 0) {
+    router.push('/checkoutform')
+  } else {
+    responseMes('購物車內無商品!', 'error')
+  }
 }
 const responseMes = (mes = '刪除成功', type = 'success') => {
   ElMessage({
