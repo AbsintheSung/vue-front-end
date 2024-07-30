@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-
 const routes = [
   {
     path: '/',
@@ -58,9 +57,9 @@ const routes = [
     component: () => import('@/views/OrderListPage.vue'),
     beforeEnter: (to, from, next) => {
       if (!to.params.pageNum || to.params.pageNum <= 0) {
-        next({ name: 'OrderList', params: { pageNum: '1' } });
+        next({ name: 'OrderList', params: { pageNum: '1' } })
       } else {
-        next();
+        next()
       }
     }
   }
@@ -69,8 +68,8 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: routes,
   scrollBehavior() {
-    return { top: 0 };
-  },
+    return { top: 0 }
+  }
 })
 
 export default router
