@@ -22,7 +22,8 @@ const getOriginPrice = computed(() => productData.value.origin_price * quenity.v
 const getPrice = computed(() => productData.value.price * quenity.value)
 const imgUrlData = computed(() => {
   if (Array.isArray(productData.value.imagesUrl)) {
-    return [productData.value.imageUrl, ...productData.value.imagesUrl]
+    //因為有可能 imagesUrl可能包含空字串，所以添加.filter((url) => url !== '') 篩選掉
+    return [productData.value.imageUrl, ...productData.value.imagesUrl].filter((url) => url !== '')
   } else {
     return [productData.value.imageUrl]
   }
