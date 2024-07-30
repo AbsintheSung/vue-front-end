@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-custom-bg-1;
+  /* min-height: 100vh;
+  height: 100%; */
+}
+
+/* #app{
+  height: 100%;
+  min-height: 100vh;
+} */
+@layer components {
+  .card-hover-pseudo {
+    @apply relative;
+  }
+  .card-hover-pseudo::before {
+    content: '';
+    @apply absolute top-0 -left-[10px] w-[25px] h-[25px] bg-[#FBFF22] rounded-full opacity-0 transition-opacity duration-300 -z-10;
+  }
+  .card-hover-pseudo:hover::before {
+    @apply opacity-100;
+  }
+  .timeline::after{
+    content: '';
+    @apply absolute border-2 border-black top-6 left-12 w-5/12 -z-10
+  }
+  .timeline::before{
+    content: '';
+    @apply absolute border-2 border-black top-6 right-12 w-5/12 -z-10
+  }
+}
