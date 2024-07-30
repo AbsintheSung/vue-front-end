@@ -62,6 +62,12 @@ const routes = [
         next()
       }
     }
+  },
+  //配置404
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: () => import('@/views/NotFound.vue')
   }
 ]
 const router = createRouter({
