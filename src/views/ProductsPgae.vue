@@ -40,7 +40,7 @@ onMounted(async () => {
 <template>
   <LoadingComponent :active="isLoading" />
   <!-- <main class="container flex h-full flex-col md:min-h-screen"> -->
-  <ActiveTitle :rightTitle="'所有活動'" />
+  <ActiveTitle :rightTitle="'所有商品'" />
   <FilterButtin :getFilterData="getFilterBtnData" />
   <ul class="grid grid-cols-1 gap-6 py-2 font-noto sm:grid-cols-2 md:grid-cols-3">
     <ProductCard v-for="item in productStore.getProductData" :key="item.id" :cardItem="item" />
