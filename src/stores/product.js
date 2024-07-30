@@ -12,21 +12,21 @@ export const useProductStore = defineStore('products', () => {
   const getProductAllData = computed(() => productAllData.value.products)
   const getProductData = computed(() => productData.value.products)
   const getProductPage = computed(() => productData.value.pagination)
-  const getFilterProduct = computed(() => {
-    if (Object.keys(productAllData.value).length === 0) return []
-    const array = productAllData.value.products
-    const result = []
-    const len = array.length
-    const taken = new Set()
-    while (result.length < 6 && taken.size < len) {
-      const randomIndex = Math.floor(Math.random() * len)
-      if (!taken.has(randomIndex)) {
-        result.push(array[randomIndex])
-        taken.add(randomIndex)
-      }
-    }
-    return result
-  })
+  // const getFilterProduct = computed(() => {
+  //   if (Object.keys(productAllData.value).length === 0) return []
+  //   const array = productAllData.value.products
+  //   const result = []
+  //   const len = array.length
+  //   const taken = new Set()
+  //   while (result.length < 6 && taken.size < len) {
+  //     const randomIndex = Math.floor(Math.random() * len)
+  //     if (!taken.has(randomIndex)) {
+  //       result.push(array[randomIndex])
+  //       taken.add(randomIndex)
+  //     }
+  //   }
+  //   return result
+  // })
 
   //action
   const fetchAllProductData = async () => {
@@ -49,13 +49,28 @@ export const useProductStore = defineStore('products', () => {
       console.log(error)
     }
   }
+  const fetchFilterProduct = () => {
+    if (Object.keys(productAllData.value).length === 0) return []
+    const array = productAllData.value.products
+    const result = []
+    const len = array.length
+    const taken = new Set()
+    while (result.length < 6 && taken.size < len) {
+      const randomIndex = Math.floor(Math.random() * len)
+      if (!taken.has(randomIndex)) {
+        result.push(array[randomIndex])
+        taken.add(randomIndex)
+      }
+    }
+    return result
+  }
 
   return {
     productData,
     getProductData,
     getProductPage,
     getProductAllData,
-    getFilterProduct,
+    fetchFilterProduct,
     fetchPageInfo,
     fetchAllProductData
   }
