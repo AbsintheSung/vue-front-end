@@ -35,7 +35,7 @@ const handlePages = async (pageNum) => {
   isLoading.value = true
   await productStore.fetchPageInfo(pageNum)
   isLoading.value = false
-  router.push({ name: 'FilterProducts', params: { pagenum: pageNum } })
+  router.push({ name: 'FilterProducts', params: { type: route.params.type, page: pageNum } })
 }
 </script>
 <template>
